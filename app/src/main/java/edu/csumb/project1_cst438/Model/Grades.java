@@ -6,6 +6,16 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Grades {
 
+    /*
+    TODO:
+    Collaboarte with Ed for the Assignment Display
+    Fix Primary Key/Foreign Key
+    Create Layout
+    Create Functions to return Average Grade of Assignment Category (i.e. Quizes, Exams, Projects)
+
+
+    */
+
     @PrimaryKey
     private int grade_id;
 
@@ -53,4 +63,5 @@ public class Grades {
     public void setCourse_id(int course_id) {
         this.course_id = course_id;
     }
+
 }
