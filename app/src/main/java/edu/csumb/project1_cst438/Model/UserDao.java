@@ -10,7 +10,7 @@ import java.util.List;
 @Dao
 public interface UserDao {
     @Query("SELECT * FROM user")
-    List<User> getAll();
+    List<User> getAllUsers();
 
     @Query("SELECT * FROM user WHERE uid IN (:userIds)")
     List<User> loadAllByIds(int[] userIds);
@@ -21,6 +21,9 @@ public interface UserDao {
 
     @Insert
     void insertAll(User... users);
+
+    @Insert
+    void insert(User user);
 
     @Delete
     void delete(User user);
