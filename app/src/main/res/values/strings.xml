@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Project1_CST438</string>
+    <string name="title_label">Title</string>
+    <string name="date_assigned">Date Assigned</string>
+    <string name="due_date">Due Date</string>
+    <string name="today_btn">Today</string>
+    <string name="due_time">Due Time</string>
+    <string name="description">Description</string>
+    <string name="possible_score">Possible Score</string>
+    <string name="category">Category</string>
+    <string name="add_assignment">Add Assignment</string>
+
 </resources>

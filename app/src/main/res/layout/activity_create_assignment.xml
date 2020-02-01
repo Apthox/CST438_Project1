@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateAssignmentActivity">
+
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="96dp"
+        android:text="@string/title_label"
+        app:layout_constraintEnd_toStartOf="@+id/title_et"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/title_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/title_tv"
+        app:layout_constraintTop_toTopOf="@+id/title_tv" />
+
+    <TextView
+        android:id="@+id/date_assigned_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date_assigned"
+        app:layout_constraintStart_toStartOf="@+id/title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/title_et" />
+
+    <EditText
+        android:id="@+id/date_assigned_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintEnd_toStartOf="@+id/today_btn"
+        app:layout_constraintStart_toEndOf="@+id/date_assigned_tv"
+        app:layout_constraintTop_toBottomOf="@+id/title_et" />
+
+    <Button
+        android:id="@+id/today_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/today_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/date_assigned_et"
+        app:layout_constraintEnd_toEndOf="@+id/title_et"
+        app:layout_constraintTop_toTopOf="@+id/date_assigned_et" />
+
+    <TextView
+        android:id="@+id/due_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/due_date"
+        app:layout_constraintStart_toStartOf="@+id/date_assigned_tv"
+        app:layout_constraintTop_toBottomOf="@+id/date_assigned_et" />
+
+    <EditText
+        android:id="@+id/due_date_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/date_assigned_et"
+        app:layout_constraintStart_toStartOf="@+id/date_assigned_et"
+        app:layout_constraintTop_toBottomOf="@+id/date_assigned_et" />
+
+    <TextView
+        android:id="@+id/due_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/due_time"
+        app:layout_constraintStart_toStartOf="@+id/due_date_tv"
+        app:layout_constraintTop_toBottomOf="@+id/due_date_et" />
+
+    <EditText
+        android:id="@+id/due_time_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        app:layout_constraintEnd_toEndOf="@+id/due_date_et"
+        app:layout_constraintStart_toStartOf="@+id/due_date_et"
+        app:layout_constraintTop_toBottomOf="@+id/due_date_et" />
+
+    <TextView
+        android:id="@+id/description_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/description"
+        app:layout_constraintStart_toStartOf="@+id/due_time_tv"
+        app:layout_constraintTop_toBottomOf="@+id/due_time_et" />
+
+    <EditText
+        android:id="@+id/description_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:maxLines="3"
+        android:minLines="3"
+        app:layout_constraintEnd_toEndOf="@+id/title_et"
+        app:layout_constraintStart_toStartOf="@+id/description_tv"
+        app:layout_constraintTop_toBottomOf="@+id/description_tv" />
+
+    <TextView
+        android:id="@+id/Possible_score_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/possible_score"
+        app:layout_constraintStart_toStartOf="@+id/description_tv"
+        app:layout_constraintTop_toBottomOf="@+id/description_et" />
+
+    <EditText
+        android:id="@+id/possible_score_et"
+        android:layout_width="112dp"
+        android:layout_height="46dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/Possible_score_tv"
+        app:layout_constraintTop_toBottomOf="@+id/description_et" />
+
+    <TextView
+        android:id="@+id/category_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/category"
+        app:layout_constraintStart_toStartOf="@+id/Possible_score_tv"
+        app:layout_constraintTop_toBottomOf="@+id/possible_score_et" />
+
+    <Spinner
+        android:id="@+id/category_spn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/category_tv"
+        app:layout_constraintTop_toBottomOf="@+id/possible_score_et" />
+
+    <Button
+        android:id="@+id/add_assignment_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_assignment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/possible_score_et"
+        app:layout_constraintVertical_bias="0.26" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
