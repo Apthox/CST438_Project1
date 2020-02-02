@@ -6,6 +6,8 @@ package edu.csumb.project1_cst438;/*
 * @Author   Juan Eduardo Garcia
 */
 
+import android.util.Log;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -16,6 +18,8 @@ import java.util.Date;
 
 // TBD @Entity
 public class Assignment {
+
+    private static final String TAG = "Assignment";
 
     @PrimaryKey (autoGenerate = true)
     private int assignmentId;
@@ -38,6 +42,18 @@ public class Assignment {
         this.description = description;
         this.possibleScore = possibleScore;
         this.category = category;
+    }
+
+    public Assignment(String title, Date dateAssigned, Date dueDate, Time dueTime,
+                      String description, float possibleScore) {
+
+        this.title = title;
+        this.dateAssigned = dateAssigned;
+        this.dueDate = dueDate;
+        this.dueTime = dueTime;
+        this.description = description;
+        this.possibleScore = possibleScore;
+        this.category = "Empty";
     }
 
     // Title setter and getter
@@ -107,4 +123,35 @@ public class Assignment {
     public void assignedToday() {
         dateAssigned = new Date();
     }
+
+    // To String
+    public String toString() {
+
+        return "Title: " + title + "\n" +
+                "Date assigned: " + displayableDate(dateAssigned) + "\n" +
+                "Due date: " + displayableDate(dueDate) + "\n" +
+                "Due time: " + displayableTime(dueTime) + "\n" +
+                "Description: " + description + "\n" +
+                "Possible score: " + possibleScore + "\n" +
+                "Category: " + category;
+    }
+
+    private String displayableDate(Date date) {
+        String dateHolder = "Not Available";
+
+        if(date != null) {
+            dateHolder = date.toString();
+        }
+        return dateHolder;
+    }
+
+    private String displayableTime(Time time) {
+        String timeHolder = "Not Available";
+
+        if(time != null){ // determines if time can be turned into a string
+            timeHolder = time.toString();
+        }
+        return timeHolder;
+    }
+
 }

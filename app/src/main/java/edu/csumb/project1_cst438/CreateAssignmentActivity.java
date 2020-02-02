@@ -3,6 +3,7 @@ package edu.csumb.project1_cst438;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CreateAssignmentActivity extends AppCompatActivity {
+
+    private static final String TAG = "CreateAssignmentAct";
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
@@ -53,7 +56,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 putTodayDateString();
-                // refreshDisplay(); room stuff...
+                // refreshDisplay(); room stuff... maybe? most likely in the "add assign btn"
             }
         });
 
@@ -61,6 +64,8 @@ public class CreateAssignmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Gather the information of the text fields
+                System.out.println(grabAssignmentsData());
+                Log.i(TAG, "addAssignment button has ran");
             }
         });
     }
@@ -70,40 +75,50 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         mDateAssigned.setText(todaysDate, TextView.BufferType.EDITABLE);
     }
 
-    public void grabAssignmentsData() {
+    public Assignment grabAssignmentsData() {
         String title = mTitle.getText().toString();
         String description = mDescription.getText().toString();
-        String category = mCategory.getSelectedItem().toString();
+        // currently empty due to no db connected
+        //String category = mCategory.getSelectedItem().toString();
 
         Date dateAssigned = generateDateFromString(mDateAssigned.getText().toString());
         Date dueDate = generateDateFromString(mDueDate.getText().toString());
 
         Time dueTime = generateTimeFromString(mDueTime.getText().toString());
         Float possibleScore = Float.parseFloat(mPossibleScore.getText().toString());
+        Log.i(TAG, "grabAssignmentData has grabbed all relevant information from user");
 
         Assignment assignment = new Assignment(title, dateAssigned, dueDate, dueTime,
-                description, possibleScore, category);
+                description, possibleScore);
+        Log.i(TAG, "new assignment made from user input");
+        Log.i(TAG, assignment.toString());
 
-        // TO DO: add room code here...
+        return assignment;
+        // TODO: add room code here...
     }
 
-    // TO DO: may need to make changes here to prevent problems should the date be invalid
+    // TODO: may need to make changes here to prevent problems should the date be invalid
     public Date generateDateFromString(String date){
+        Date dateFound = null; // is this the best way to handle it?
         try{
-            return dateFormat.parse(date);
+            dateFound = dateFormat.parse(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        // what should return here?...
+        return dateFound;
     }
 
     public Time generateTimeFromString(String time) {
+        Time timeFound = null; // is this the best way to handle it?
         try{
-            return (Time) timeFormat.parse(time);
+            timeFound = (Time) timeFormat.parse(time);
+            System.out.println(timeFound);
+            Log.i(TAG, "The information should be just above");
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        // what should return here?...
+        Log.i(TAG, "The information should be just above");
+        return timeFound;
     }
 
 }
