@@ -64,8 +64,8 @@ public class Grades {
         this.course_id = course_id;
     }
 
-//    This function will display the grades
-//    public int averageGrade(ArrayList<List> grades){
+//    This function will return the average grades
+//    public double averageGrade(List<double> grades){
 //        int average = 0;
 //        int count = 0;
 //
@@ -78,22 +78,22 @@ public class Grades {
 //    }
 
 //    This Function Displays the Letter Grade
-//    public void displayLetterGrade(int gradePoints){
+//    public char displayLetterGrade(int gradePoints){
 //      if(gradePoints < 100 && gradePoints > 89) {
-//          System.out.println("A");
+//          return 'A';
 //      }
 //      else if(gradePoints < 89 && gradePoints > 79){
-//          System.out.println("B");
+//          return 'B';
 //      }
 //      else if(gradePoints < 79 && gradePoints > 69){
-//          System.out.println("C");
+//          return 'C';
 //      }
 //      else if(gradePoints <69 && gradePoints > 59){
-//          System.out.println("D");
+//          return 'D';
 //      }
 //      else{
-//          System.out.println("F");
+//          return 'F';
 //      }
 //    }
 
-
+}
