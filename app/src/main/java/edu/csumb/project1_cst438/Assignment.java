@@ -21,39 +21,33 @@ public class Assignment {
 
     private static final String TAG = "Assignment";
 
-    @PrimaryKey (autoGenerate = true)
+    //@PrimaryKey (autoGenerate = true)
     private int assignmentId;
 
     private String title;
     private Date dateAssigned;
-    private Date dueDate;
-    private Time dueTime;
+    private Date dueDateAndTime;
     private String description;
     private float possibleScore;
-    private String category;
 
     public Assignment(String title, Date dateAssigned, Date dueDate, Time dueTime,
             String description, float possibleScore, String category) {
 
         this.title = title;
         this.dateAssigned = dateAssigned;
-        this.dueDate = dueDate;
-        this.dueTime = dueTime;
+        this.dueDateAndTime = dueDateAndTime;
         this.description = description;
         this.possibleScore = possibleScore;
-        this.category = category;
     }
 
-    public Assignment(String title, Date dateAssigned, Date dueDate, Time dueTime,
+    public Assignment(String title, Date dateAssigned, Date dueDateAndTime,
                       String description, float possibleScore) {
 
         this.title = title;
         this.dateAssigned = dateAssigned;
-        this.dueDate = dueDate;
-        this.dueTime = dueTime;
+        this.dueDateAndTime = dueDateAndTime;
         this.description = description;
         this.possibleScore = possibleScore;
-        this.category = "Empty";
     }
 
     // Title setter and getter
@@ -76,20 +70,11 @@ public class Assignment {
 
     // Title setter and getter
     public Date getDueDate() {
-        return dueDate;
+        return dueDateAndTime;
     }
 
     public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    // Due time setter and getter
-    public Time getDueTime() {
-        return dueTime;
-    }
-
-    public void setDueTime(Time dueTime) {
-        this.dueTime = dueTime;
+        this.dueDateAndTime = dueDate;
     }
 
     // Description setter and getter
@@ -110,15 +95,6 @@ public class Assignment {
         this.possibleScore = possibleScore;
     }
 
-    // Category setter and getter
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     // Function to set the assignment date to today
     public void assignedToday() {
         dateAssigned = new Date();
@@ -129,11 +105,9 @@ public class Assignment {
 
         return "Title: " + title + "\n" +
                 "Date assigned: " + displayableDate(dateAssigned) + "\n" +
-                "Due date: " + displayableDate(dueDate) + "\n" +
-                "Due time: " + displayableTime(dueTime) + "\n" +
+                "Due date: " + displayableDate(dueDateAndTime) + "\n" +
                 "Description: " + description + "\n" +
-                "Possible score: " + possibleScore + "\n" +
-                "Category: " + category;
+                "Possible score: " + possibleScore;
     }
 
     private String displayableDate(Date date) {
@@ -144,14 +118,4 @@ public class Assignment {
         }
         return dateHolder;
     }
-
-    private String displayableTime(Time time) {
-        String timeHolder = "Not Available";
-
-        if(time != null){ // determines if time can be turned into a string
-            timeHolder = time.toString();
-        }
-        return timeHolder;
-    }
-
 }

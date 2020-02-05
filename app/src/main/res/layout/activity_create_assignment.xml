@@ -129,21 +129,6 @@
         app:layout_constraintStart_toEndOf="@+id/Possible_score_tv"
         app:layout_constraintTop_toBottomOf="@+id/description_et" />
 
-    <TextView
-        android:id="@+id/category_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/category"
-        app:layout_constraintStart_toStartOf="@+id/Possible_score_tv"
-        app:layout_constraintTop_toBottomOf="@+id/possible_score_et" />
-
-    <Spinner
-        android:id="@+id/category_spn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/category_tv"
-        app:layout_constraintTop_toBottomOf="@+id/possible_score_et" />
-
     <Button
         android:id="@+id/add_assignment_btn"
         android:layout_width="wrap_content"
