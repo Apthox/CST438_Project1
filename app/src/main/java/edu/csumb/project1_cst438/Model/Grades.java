@@ -64,4 +64,36 @@ public class Grades {
         this.course_id = course_id;
     }
 
-}
+//    This function will display the grades
+//    public int averageGrade(ArrayList<List> grades){
+//        int average = 0;
+//        int count = 0;
+//
+//        for(int i = 0; i < grades.length(); i++){
+//            average += grades[i];
+//            count += 1;
+//        }
+//
+//        return average/count;
+//    }
+
+//    This Function Displays the Letter Grade
+//    public void displayLetterGrade(int gradePoints){
+//      if(gradePoints < 100 && gradePoints > 89) {
+//          System.out.println("A");
+//      }
+//      else if(gradePoints < 89 && gradePoints > 79){
+//          System.out.println("B");
+//      }
+//      else if(gradePoints < 79 && gradePoints > 69){
+//          System.out.println("C");
+//      }
+//      else if(gradePoints <69 && gradePoints > 59){
+//          System.out.println("D");
+//      }
+//      else{
+//          System.out.println("F");
+//      }
+//    }
+
+
