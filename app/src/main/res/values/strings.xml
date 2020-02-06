@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Project1_CST438</string>
+    <string name="course_id_entry">Enter_Course_ID</string>
+    <string name="course_instructor_entry">Enter_Instructor</string>
+    <string name="course_description_entry">Enter_Description</string>
+    <string name="course_end_date_entry">Enter_End_Date</string>
+    <string name="course_start_date_entry">Enter_Start_Date</string>
+    <string name="course_title_entry">Enter_Title</string>
+    <string name="button_add_course">Add Course</string>
 </resources>
