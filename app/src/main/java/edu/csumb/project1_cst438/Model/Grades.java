@@ -29,6 +29,19 @@ public class Grades {
     private int course_id;
 
 
+    public Grades(int grade_id, double score, int assignment_id, int student_id, int course_id) {
+        this.grade_id = grade_id;
+        this.score = score;
+        this.assignment_id = assignment_id;
+        this.student_id = student_id;
+        this.course_id = course_id;
+    }
+
+    // Default Constructor
+    public Grades() {
+
+    }
+
     public int getGrade_id() {
         return grade_id;
     }
@@ -69,9 +82,6 @@ public class Grades {
         this.course_id = course_id;
     }
 
-    List<Double> gradesSample = Arrays.asList(99.00, 10.34, 32.23, 23.43, 100.00);
-
-
     //This function will return the average grades
     public double averageGrade(List<Double> grades){
         int average = 0;
@@ -104,8 +114,5 @@ public class Grades {
           return 'F';
       }
     }
-
-    double average = averageGrade(gradesSample);
-    char letterGradeSample = letterGrade(average);
 
 }

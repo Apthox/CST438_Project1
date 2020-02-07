@@ -31,22 +31,19 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    /*
-        I believe we need to set up a constructor because I am getting an error due to having the
-        functions running as static.
-     */
+    @Test
+    public void testaverageGrade()
+    {
+        Grades grade = new Grades();
+        List<Double> testGrades = Arrays.asList(95.00, 95.00, 95.00);
+        assertEquals(95.00, grade.averageGrade(testGrades), 0.1);
+    }
 
-//    @Test
-//    public void testaverageGrade()
-//    {
-//        List<Double> testGrades = Arrays.asList(95.00, 95.00, 95.00);
-//        assertEquals(95.00, Grades.averageGrade(testGrades));
-//    }
-//
-//    @Test
-//    public void testLetterGrade()
-//    {
-//        double testAverageScore = 95.00;
-//        assertEquals('A', Grades.letterGrade(testAverageScore));
-//    }
+    @Test
+    public void testLetterGrade()
+    {
+        Grades grade = new Grades();
+        double testAverageScore = 95.00;
+        assertEquals('A', grade.letterGrade(testAverageScore));
+    }
 }
