@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 
 import java.util.List;
 
-@Database(entities = {User.class}, version = 1)
+@Database(entities = {User.class}, version = 1, exportSchema = false)
 public abstract class AppRoom extends RoomDatabase {
 
     private static AppRoom instance;
@@ -31,7 +31,7 @@ public abstract class AppRoom extends RoomDatabase {
 
         // if user table is empty, then load data for users and flights
 
-        List<User> user_list = AppRoom.getAppRoom(context).dao().getAllUsers();
+        List<User> user_list = AppRoom.getAppRoom(context).userDao().getAllUsers();
         if (user_list.size() == 0) {
             Log.d("FlightRoom", "loading data ");
             loadUsers(context);
@@ -39,7 +39,7 @@ public abstract class AppRoom extends RoomDatabase {
     }
 
     private void loadUsers(Context context) {
-        UserDao dao = getAppRoom(context).dao();
+        UserDao dao = getAppRoom(context).userDao();
 
         User alice = new User("A@lice5", "@cSit100", "Alice", "Smith");
         User brian = new User("$BriAn7","123aBc##", "Brain", "Bob");
