@@ -3,6 +3,10 @@ package edu.csumb.project1_cst438.Model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Entity
 public class Grades {
 
@@ -19,10 +23,11 @@ public class Grades {
     @PrimaryKey
     private int grade_id;
 
-    private int score;
+    private double score;
     private int assignment_id;
     private int student_id;
     private int course_id;
+
 
     public int getGrade_id() {
         return grade_id;
@@ -32,7 +37,7 @@ public class Grades {
         this.grade_id = grade_id;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
@@ -64,36 +69,43 @@ public class Grades {
         this.course_id = course_id;
     }
 
-//    This function will return the average grades
-//    public double averageGrade(List<double> grades){
-//        int average = 0;
-//        int count = 0;
-//
-//        for(int i = 0; i < grades.length(); i++){
-//            average += grades[i];
-//            count += 1;
-//        }
-//
-//        return average/count;
-//    }
+    List<Double> gradesSample = Arrays.asList(99.00, 10.34, 32.23, 23.43, 100.00);
+
+
+    //This function will return the average grades
+    public double averageGrade(List<Double> grades){
+        int average = 0;
+        int count = 0;
+
+        for(int i = 0; i < grades.size(); i++){
+            average += grades.get(i);
+            count += 1;
+        }
+
+        return average/count;
+    }
+
 
 //    This Function Displays the Letter Grade
-//    public char displayLetterGrade(int gradePoints){
-//      if(gradePoints < 100 && gradePoints > 89) {
-//          return 'A';
-//      }
-//      else if(gradePoints < 89 && gradePoints > 79){
-//          return 'B';
-//      }
-//      else if(gradePoints < 79 && gradePoints > 69){
-//          return 'C';
-//      }
-//      else if(gradePoints <69 && gradePoints > 59){
-//          return 'D';
-//      }
-//      else{
-//          return 'F';
-//      }
-//    }
+    public char letterGrade(double gradePoints){
+      if(gradePoints < 100 && gradePoints > 89) {
+          return 'A';
+      }
+      else if(gradePoints < 89 && gradePoints > 79){
+          return 'B';
+      }
+      else if(gradePoints < 79 && gradePoints > 69){
+          return 'C';
+      }
+      else if(gradePoints <69 && gradePoints > 59){
+          return 'D';
+      }
+      else{
+          return 'F';
+      }
+    }
+
+    double average = averageGrade(gradesSample);
+    char letterGradeSample = letterGrade(average);
 
 }
