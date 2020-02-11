@@ -8,16 +8,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.List;
-
 import edu.csumb.project1_cst438.Model.Grades;
-
 import static org.junit.Assert.*;
-
-
-
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -32,7 +26,7 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void testaverageGrade()
+    public void testAverageGrade()
     {
         Grades grade = new Grades();
         List<Double> testGrades = Arrays.asList(95.00, 95.00, 95.00);
