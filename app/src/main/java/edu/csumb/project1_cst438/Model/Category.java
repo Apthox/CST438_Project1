@@ -16,7 +16,7 @@ public class Category {
     public String categoryType;
     public double categoryPercentage;
 
-    public Category(String categoryName, String categoryType, double percentage) {
+    public Category(String categoryName, String categoryType, double categoryPercentage) {
         this.categoryName = categoryName;
         this.categoryType = categoryType;
         this.categoryPercentage = categoryPercentage;
