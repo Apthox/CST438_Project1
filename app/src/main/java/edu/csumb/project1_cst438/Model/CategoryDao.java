@@ -11,7 +11,7 @@ import java.util.List;
 public interface CategoryDao {
 
     @Query("SELECT * FROM category")
-    List<Grades> getAllGrades();
+    List<Category> getAllCategory();
 
     @Query("SELECT * FROM category WHERE student_id IN (:userIds)")
     List<User> loadAllByIds(int[] userIds);
