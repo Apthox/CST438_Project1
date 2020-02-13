@@ -24,9 +24,13 @@ public class Grades {
     private int grade_id;
 
     private double score;
-    private int assignment_id;
+    private double maxScore;
     private int student_id;
     private int course_id;
+
+    // need to grab from assignment class
+    private int assignment_id;
+    private String category_id;
 
 
     public Grades(int grade_id, double score, int assignment_id, int student_id, int course_id) {
@@ -96,7 +100,7 @@ public class Grades {
     }
 
 
-//    This Function Displays the Letter Grade
+//    This Function Displays the Letter Grade for the total avg grade of course
     public char letterGrade(double gradePoints){
       if(gradePoints < 100 && gradePoints > 89) {
           return 'A';
