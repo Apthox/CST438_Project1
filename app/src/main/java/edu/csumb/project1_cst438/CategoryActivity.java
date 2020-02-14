@@ -1,5 +1,7 @@
 package edu.csumb.project1_cst438;
 
+import android.content.DialogInterface;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -35,8 +37,26 @@ public class CategoryActivity extends AppCompatActivity {
             @Override
             public void onClick (View view) {
                 openRemoveCategoryActivity();
+
+                //***Alert dialog below will be moved to different place***
+
+//                AlertDialog.Builder builder = new AlertDialog.Builder(CategoryActivity.this);
+//                builder.setTitle("Are you sure you want to delete this category?");
+//
+//                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        //delete category
+//                    }
+//                });
+//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        //cancel alert
+//                    }
+//                });
             }
-        });
+        }); // end of onclick listener for remove button
     }
 
     public void openAddCategoryActivity() {
@@ -47,6 +67,12 @@ public class CategoryActivity extends AppCompatActivity {
 
     public void openRemoveCategoryActivity() {
         // Main activity for now until we create remove category activity.
+
+        // Instead of a new activity, team suggested to have options on the clickable categories to delete/edit and one button on the bottom to add category.
+        // For the delete option we can add an alert asking user to confirm that they want to delete that category.
+
+        //Example: https://www.simplifiedcoding.net/create-options-menu-recyclerview-item-tutorial/
+        // Not sure how helpful the link above is yet
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
