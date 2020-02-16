@@ -42,20 +42,14 @@
         android:id="@+id/date_assigned_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="124dp"
+        android:layout_marginRight="124dp"
+        android:focusableInTouchMode="false"
+        android:clickable="true"
         android:ems="10"
-        android:inputType="date"
-        app:layout_constraintEnd_toStartOf="@+id/today_btn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/date_assigned_tv"
         app:layout_constraintTop_toBottomOf="@+id/title_et" />
-
-    <Button
-        android:id="@+id/today_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/today_btn"
-        app:layout_constraintBottom_toBottomOf="@+id/date_assigned_et"
-        app:layout_constraintEnd_toEndOf="@+id/title_et"
-        app:layout_constraintTop_toTopOf="@+id/date_assigned_et" />
 
     <TextView
         android:id="@+id/due_date_tv"
@@ -69,8 +63,9 @@
         android:id="@+id/due_date_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:focusableInTouchMode="false"
+        android:clickable="true"
         android:ems="10"
-        android:inputType="date"
         app:layout_constraintEnd_toEndOf="@+id/date_assigned_et"
         app:layout_constraintStart_toStartOf="@+id/date_assigned_et"
         app:layout_constraintTop_toBottomOf="@+id/date_assigned_et" />
@@ -87,8 +82,9 @@
         android:id="@+id/due_time_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:focusableInTouchMode="false"
+        android:clickable="true"
         android:ems="10"
-        android:inputType="time"
         app:layout_constraintEnd_toEndOf="@+id/due_date_et"
         app:layout_constraintStart_toStartOf="@+id/due_date_et"
         app:layout_constraintTop_toBottomOf="@+id/due_date_et" />

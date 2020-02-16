@@ -1,4 +1,4 @@
-package edu.csumb.project1_cst438;/*
+/*
 * edu.csumb.project1_cst438.Assignment class is intended to store the information pertaining to an assignment.
 * That is to say holds Title, Date assigned, Due date and time, Description, Possible score
 * and Category.
@@ -6,51 +6,64 @@ package edu.csumb.project1_cst438;/*
 * @Author   Juan Eduardo Garcia
 */
 
+package edu.csumb.project1_cst438;
+
 import android.util.Log;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Time;
-import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-// TBD @Entity
+import edu.csumb.project1_cst438.Model.AppDatabase;
+
+//@Entity(tableName = AppDatabase.ASSIGNMENT_TABLE)
 public class Assignment {
 
     private static final String TAG = "Assignment";
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
     //@PrimaryKey (autoGenerate = true)
     private int assignmentId;
+    private int courseId;
+    private int categoryId;
 
     private String title;
-    private Date dateAssigned;
-    private Date dueDateAndTime;
+    private Long dateAssigned; // using long for ease of use
+    private Long dueDate;
+    private Long dueTime;
     private String description;
+    private String category;
     private float possibleScore;
+    private float scoreEarned;
 
-    public Assignment(String title, Date dateAssigned, Date dueDate, Time dueTime,
-            String description, float possibleScore, String category) {
+    // Constructor for assignment using date objects for dateAssigned and dueDateAndTime
+    public Assignment(String title, Long dateAssigned, Long dueDate, Long dueTime,
+            String description, float possibleScore) {
 
         this.title = title;
         this.dateAssigned = dateAssigned;
-        this.dueDateAndTime = dueDateAndTime;
+        this.dueDate = dueDate;
+        this.dueTime = dueTime;
         this.description = description;
         this.possibleScore = possibleScore;
     }
 
-    public Assignment(String title, Date dateAssigned, Date dueDateAndTime,
-                      String description, float possibleScore) {
-
+    // Constructor for assignment using strings for dateAssigned and dueDateAndTime
+    public Assignment(String title, String dateAssigned, String dueDate, String dueTime,
+            String description, float possibleScore) {
         this.title = title;
-        this.dateAssigned = dateAssigned;
-        this.dueDateAndTime = dueDateAndTime;
+        this.dateAssigned = convertStringDateToLong(dateAssigned); // could be null due to parsing
+        this.dueDate = convertStringDateToLong(dueDate); // could be null due to parsing
+        this.dueTime = convertStringTimeToLong(dueTime); // could be null due to parsing
         this.description = description;
         this.possibleScore = possibleScore;
     }
 
-    // Title setter and getter
+    // getter and setter for title --------------------------------------
     public String getTitle() {
         return title;
     }
@@ -59,25 +72,93 @@ public class Assignment {
         this.title = title;
     }
 
-    // Date Assigned setter and getter
-    public Date getDateAssigned() {
+    // getter and setter for dateAssigned -------------------------------
+    public Long getDateAssigned() { // using long
         return dateAssigned;
     }
 
-    public void setDateAssigned(Date dateAssigned) {
-        this.dateAssigned = dateAssigned;
+    public String getStringDateAssigned() { // using string
+        return convertLongDateToString(dateAssigned);
     }
 
-    // Title setter and getter
-    public Date getDueDate() {
-        return dueDateAndTime;
+    public void setDateAssigned(Long date) { // using long
+        this.dateAssigned = date;
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDateAndTime = dueDate;
+    public void setDateAssignedFromString(String date) { // using string
+        this.dateAssigned = convertStringDateToLong(date);
     }
 
-    // Description setter and getter
+    // getter and setter for dueDate ----------------------------------
+    public Long getDueDate() {
+        return dueDate;
+    }
+
+    public String getStringDueDate() {
+        return convertLongDateToString(dueDate);
+    }
+
+    public void setDueDate(Long dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public void setDueDateFromString(String date) {
+        this.dueDate = convertStringDateToLong(date);
+    }
+
+    // getter and setter for dueTime ----------------------------------
+    public Long getDueTime() {
+        return dueTime;
+    }
+
+    public String getStringDueTime() {
+        return convertLongTimeToString(dueTime);
+    }
+
+    public void setDueTime(Long time) {
+        this.dueTime = time;
+    }
+
+    public void setDueTimeFromString(String time) {
+        this.dueTime = convertStringTimeToLong(time);
+    }
+
+    // converter functions --------------------------------------------
+    private String convertLongDateToString(Long date) {
+        return dateFormat.format(new Date(date));
+    }
+
+    private String convertLongTimeToString(Long date) {
+        return timeFormat.format(new Date(date));
+    }
+
+    private Long convertStringDateToLong(String date) {
+        Date temp = parseMomentInTimeFromFormatAndStringToDate(dateFormat, date);
+        return temp.getTime();
+    }
+
+    private Long convertStringTimeToLong(String time) {
+        Date temp = parseMomentInTimeFromFormatAndStringToDate(timeFormat, time);
+        return temp.getTime();
+    }
+
+    /* parseMomentInTimeFromFormatAndStringToDate(simpleDateFormat, String)
+    This helper function will take a SimpleDateFormat and a string containing a moment in time
+    that follows the SimpleDateFormat given and will return a Date object containing the appropriate
+    information. Should the string be on a different format or an invalid format an error will be
+    raised.
+    */
+    private Date parseMomentInTimeFromFormatAndStringToDate(SimpleDateFormat format, String date) {
+        Date found = null;
+        try{
+            found = format.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return found;
+    }
+
+    // getter and setter for description ------------------------------
     public String getDescription() {
         return description;
     }
@@ -86,7 +167,25 @@ public class Assignment {
         this.description = description;
     }
 
-    // Possible score setter and getter
+    // getter and setter for category ---------------------------------
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    // getter and setter for courseId ---------------------------------
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    // getter and setter for possibleScore ----------------------------
     public float getPossibleScore() {
         return possibleScore;
     }
@@ -95,27 +194,42 @@ public class Assignment {
         this.possibleScore = possibleScore;
     }
 
-    // Function to set the assignment date to today
-    public void assignedToday() {
-        dateAssigned = new Date();
+    // getter and setter for scoreEarned ------------------------------
+    public float getScoreEarned() {
+        return scoreEarned;
+    }
+
+    public void setScoreEarned(float scoreEarned) {
+        this.scoreEarned = scoreEarned;
+    }
+
+    // getter and setter for assignmentId -----------------------------
+    public int getAssignmentId() {
+        return assignmentId;
+    }
+
+    public void setAssignmentId(int assignmentId) {
+        this.assignmentId = assignmentId;
+    }
+
+    // getter and setter for categoryId -------------------------------
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     // To String
+    @Override
     public String toString() {
-
+        // this may still need more information to display
         return "Title: " + title + "\n" +
-                "Date assigned: " + displayableDate(dateAssigned) + "\n" +
-                "Due date: " + displayableDate(dueDateAndTime) + "\n" +
+                "Date assigned: " + convertLongDateToString(dateAssigned) + "\n" + // may need to be changed
+                "Due date: " + convertLongDateToString(dueDate) + "\n" + // may need to also be changed
+                "Due time: " + convertLongTimeToString(dueTime) + "\n" + // same as above
                 "Description: " + description + "\n" +
                 "Possible score: " + possibleScore;
-    }
-
-    private String displayableDate(Date date) {
-        String dateHolder = "Not Available";
-
-        if(date != null) {
-            dateHolder = date.toString();
-        }
-        return dateHolder;
     }
 }
