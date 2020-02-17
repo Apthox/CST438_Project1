@@ -4,24 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Model.ACT_Add_Course">
+    tools:context=".Model.ACT_Edit_Course">
 
     <EditText
-        android:id="@+id/courseInstructor"
-        android:layout_width="312dp"
-        android:layout_height="68dp"
-        android:ems="10"
-        android:hint="@string/course_instructor_entry"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.306" />
-
-    <EditText
-        android:id="@+id/courseID"
+        android:id="@+id/courseID2"
         android:layout_width="312dp"
         android:layout_height="68dp"
         android:ems="10"
@@ -29,44 +15,15 @@
         android:inputType="numberSigned"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.573" />
-
-    <EditText
-        android:id="@+id/courseDescription"
-        android:layout_width="312dp"
-        android:layout_height="68dp"
-        android:ems="10"
-        android:hint="@string/course_description_entry"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.176" />
-
-    <EditText
-        android:id="@+id/courseTitleEntry"
-        android:layout_width="312dp"
-        android:layout_height="68dp"
-        android:ems="10"
-        android:hint="@string/course_title_entry"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.758" />
 
     <Button
-        android:id="@+id/button_submit"
+        android:id="@+id/button_submit2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onSubmit"
         android:text="@string/button_add_course"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,28 +32,73 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.909" />
 
-    <TextView
-        android:id="@+id/date_start"
-        android:layout_width="300dp"
-        android:layout_height="72dp"
-        android:text="@string/course_start_date_entry"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+    <EditText
+        android:id="@+id/courseDescription2"
+        android:layout_width="312dp"
+        android:layout_height="68dp"
+        android:ems="10"
+        android:hint="@string/course_description_entry"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.446" />
+        app:layout_constraintVertical_bias="0.232" />
 
-    <TextView
-        android:id="@+id/date_end"
-        android:layout_width="306dp"
-        android:layout_height="78dp"
-        android:text="@string/course_end_date_entry"
+    <EditText
+        android:id="@+id/courseTitleEntry2"
+        android:layout_width="312dp"
+        android:layout_height="68dp"
+        android:ems="10"
+        android:hint="@string/course_title_entry"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.722" />
+        app:layout_constraintVertical_bias="0.092" />
+
+    <EditText
+        android:id="@+id/courseStartDate2"
+        android:layout_width="312dp"
+        android:layout_height="68dp"
+        android:ems="10"
+        android:hint="@string/course_start_date_entry"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.482" />
+
+    <EditText
+        android:id="@+id/courseInstructor2"
+        android:layout_width="312dp"
+        android:layout_height="68dp"
+        android:ems="10"
+        android:hint="@string/course_instructor_entry"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.355" />
+
+    <EditText
+        android:id="@+id/courseEndDate2"
+        android:layout_width="312dp"
+        android:layout_height="68dp"
+        android:ems="10"
+        android:hint="@string/course_end_date_entry"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.621" />
 </androidx.constraintlayout.widget.ConstraintLayout>

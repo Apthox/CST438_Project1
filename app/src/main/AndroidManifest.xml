@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Model.ACT_Initial_Course_Display"></activity>
+        <activity android:name=".Model.ACT_Edit_Course"></activity>
+        <activity android:name=".Model.ACT_Detailed_Course_Editable" />
+        <activity android:name=".tests" />
+        <activity android:name=".Model.ACT_Initial_Course_Display" />
         <activity android:name=".Model.ACT_Add_Course" />
         <activity android:name=".MainActivity">
             <intent-filter>

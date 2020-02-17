@@ -56,7 +56,7 @@ public class ExampleInstrumentedTest {
     public void insert(){
         Course testInsert = new Course("Psych","Big Mike","learn bout brains",new Date(2020,1,1),new Date(2020,2,2),907);
         courseDao.insert(testInsert);
-        List<Course>DBTestList =  courseDao.getAllCourses();
+        List<Course>DBTestList = courseDao.getAllCourses();
         assertEquals(1,DBTestList.size());
         assertEquals(testInsert.getCourseID(),DBTestList.get(0).getCourseID());
         assertEquals(testInsert,DBTestList.get(0));

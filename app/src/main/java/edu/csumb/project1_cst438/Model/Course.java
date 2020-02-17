@@ -1,5 +1,6 @@
 package edu.csumb.project1_cst438.Model;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -16,8 +17,11 @@ public class Course {
     @PrimaryKey(autoGenerate = true)
     private Integer mUniqueID;
 
-    private String mInstructor,mCourseTitle,mCourseDescription;
+    //@ColumnInfo
     private Integer mCourseID;
+
+    private String mInstructor,mCourseTitle,mCourseDescription;
+
     private Date mStartDate,mEndDate;
 
     public Course(String mCourseTitle, String mInstructor, String mCourseDescription, Date mStartDate, Date mEndDate, Integer mCourseID) {
