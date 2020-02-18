@@ -31,6 +31,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
     EditText mPossibleScore;
 
     Button mAddAssignment;
+    Button mCancelAssignmentCreation;
 
 
     @Override
@@ -52,6 +53,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         mPossibleScore = (EditText) findViewById(R.id.possible_score_et);
 
         mAddAssignment = findViewById(R.id.add_assignment_btn);
+        mCancelAssignmentCreation = findViewById(R.id.cancel_btn);
 
         // TODO: add Room functionality here
 
@@ -73,6 +75,14 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 // grab all the data and make an object
                 // communicate with the db to upload object
                 // move up one level
+            }
+        });
+
+        // listener for button to cancel and return to previous activity
+        mCancelAssignmentCreation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

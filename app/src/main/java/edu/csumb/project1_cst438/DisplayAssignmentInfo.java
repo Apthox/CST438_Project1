@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.InputType;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ public class DisplayAssignmentInfo extends AppCompatActivity {
     TextView mDescription;
     TextView mScoreEarned;
     TextView mPossibleScore;
+    Button mEditBtn;
+    Button mDeleteBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,11 @@ public class DisplayAssignmentInfo extends AppCompatActivity {
         mPossibleScore = (TextView) findViewById(R.id.assignment_max_score_tv);
 
         // buttons here for edit, and delete
+        // mEditBtn;
+        // mDeleteBtn;
+
+        // receive the incoming assignment to display
+        getIncomingAssignment();
 
     }
 
@@ -42,5 +50,12 @@ public class DisplayAssignmentInfo extends AppCompatActivity {
         mDueTime.setText(assignment.getStringDueTime());
         mDescription.setText(assignment.getDescription());
         mPossibleScore.setText(String.valueOf(assignment.getPossibleScore()));
+    }
+
+    private void getIncomingAssignment() {
+        if(getIntent().hasExtra("Assignment")) {
+            Assignment assignment = (Assignment) getIntent().getSerializableExtra("Assignment");
+            populateDisplay(assignment);
+        }
     }
 }

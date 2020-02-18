@@ -13,6 +13,7 @@ import android.util.Log;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +21,7 @@ import java.util.Date;
 import edu.csumb.project1_cst438.Model.AppDatabase;
 
 //@Entity(tableName = AppDatabase.ASSIGNMENT_TABLE)
-public class Assignment {
+public class Assignment implements Serializable {
 
     private static final String TAG = "Assignment";
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -29,7 +30,7 @@ public class Assignment {
     //@PrimaryKey (autoGenerate = true)
     private int assignmentId;
     private int courseId;
-    private int categoryId;
+    private int categoryId; // grading category (hw, test, quiz, etc.)
 
     private String title;
     private Long dateAssigned; // using long for ease of use
