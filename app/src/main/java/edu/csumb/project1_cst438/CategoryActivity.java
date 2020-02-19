@@ -3,6 +3,8 @@ package edu.csumb.project1_cst438;
 import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +16,10 @@ import android.widget.TextView;
 
 public class CategoryActivity extends AppCompatActivity {
 
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +29,7 @@ public class CategoryActivity extends AppCompatActivity {
         final Button remove_button = (Button) findViewById(R.id.remove_button);
         TextView gradeView = (TextView) findViewById(R.id.grade_view);
         TextView password = (TextView) findViewById(R.id.grade_percent_view);
+
 
         // on click listener for add_button
         add_button.setOnClickListener(new View.OnClickListener() {
@@ -75,5 +82,15 @@ public class CategoryActivity extends AppCompatActivity {
         // Not sure how helpful the link above is yet
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void buildRecyclerView() {
+        mRecyclerView = findViewById(R.id.list_categories);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        //mAdapter = new ExampleAdapter(mExampleList);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
     }
 }
