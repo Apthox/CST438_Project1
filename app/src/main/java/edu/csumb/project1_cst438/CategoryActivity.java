@@ -13,20 +13,35 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import edu.csumb.project1_cst438.MainActivity;
+import edu.csumb.project1_cst438.Model.MyList;
+import edu.csumb.project1_cst438.Model.ExampleAdapter;
+import edu.csumb.project1_cst438.R;
+
+
 
 public class CategoryActivity extends AppCompatActivity {
 
+    private ArrayList<MyList> mExampleList;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private Button add_button;
+    private Button remove_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        final Button add_button = (Button) findViewById(R.id.add_button);
-        final Button remove_button = (Button) findViewById(R.id.remove_button);
+        createExampleList();
+        buildRecyclerView();
+
+        add_button = findViewById(R.id.add_button);
+        remove_button = findViewById(R.id.remove_button);
         TextView gradeView = (TextView) findViewById(R.id.grade_view);
         TextView password = (TextView) findViewById(R.id.grade_percent_view);
 
@@ -84,11 +99,19 @@ public class CategoryActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void createExampleList() {
+        mExampleList = new ArrayList<>();
+        mExampleList.add(new MyList("Quiz"));
+        mExampleList.add(new MyList("Test"));
+        mExampleList.add(new MyList("Project"));
+
+    }
+
     public void buildRecyclerView() {
         mRecyclerView = findViewById(R.id.list_categories);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        //mAdapter = new ExampleAdapter(mExampleList);
+        mAdapter = new ExampleAdapter(mExampleList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
