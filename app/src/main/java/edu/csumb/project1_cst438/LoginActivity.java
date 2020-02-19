@@ -1,5 +1,6 @@
 package edu.csumb.project1_cst438;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +10,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.List;
+
+import edu.csumb.project1_cst438.Model.AppRoom;
+import edu.csumb.project1_cst438.Model.User;
+import edu.csumb.project1_cst438.Model.UserDao;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,18 +34,60 @@ public class LoginActivity extends AppCompatActivity {
                 // Perform action on click
                 Intent activityChangeIntent = new Intent(LoginActivity.this, MainActivity.class);
 
-                // currentContext.startActivity(activityChangeIntent);
+                UserDao dao = AppRoom.getAppRoom(instance).userDao();
 
                 EditText username = (EditText) findViewById(R.id.UsernameInput);
                 EditText password = (EditText) findViewById(R.id.PasswordInput);
 
-                Log.d("Login Activity", "Username > " + username.getText());
-                Log.d("Login Activity", "Password > " + password.getText());
+                if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
+                    AlertDialog alertDialog = createAlertDialog("Alert", "Input username and password!");
+                    alertDialog.show();
+                    return;
+                }
 
-                LoginActivity.this.startActivity(activityChangeIntent);
-                instance.finish();
+                User user = dao.getUser(username.getText().toString());
+
+                if (user == null) {
+                    AlertDialog alertDialog = createAlertDialog("Alert", "User does not exist in the database!");
+                    alertDialog.show();
+                    return;
+                }
+
+                if (user.getPassword().equals(password.getText().toString())) {
+                    AlertDialog alertDialog = createAlertDialog("Alert", "User authenticated!");
+                    alertDialog.show();
+
+                    MainActivity.signedIn = true;
+                    MainActivity.username = user.getUsername();
+
+                    // TODO: Place intent here for course display page
+
+                    return;
+                } else {
+                    AlertDialog alertDialog = createAlertDialog("Alert", "Password was incorrect!");
+                    alertDialog.show();
+                    return;
+                }
             }
         });
+    }
 
+    private AlertDialog createAlertDialog(String title, String text) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        // set title
+        alertDialogBuilder.setTitle(title);
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage(text)
+                .setCancelable(true)
+                .setNegativeButton("Close",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        return alertDialogBuilder.create();
     }
 }
