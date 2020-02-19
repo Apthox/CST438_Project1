@@ -2,6 +2,7 @@ package edu.csumb.project1_cst438;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.SigningInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,8 +29,8 @@ public class LoginActivity extends AppCompatActivity {
 
         final LoginActivity instance = this;
 
-        final Button button = (Button) findViewById(R.id.SignInButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button sign_in_button = (Button) findViewById(R.id.SignInButton);
+        sign_in_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
                 Intent activityChangeIntent = new Intent(LoginActivity.this, MainActivity.class);
@@ -68,6 +69,15 @@ public class LoginActivity extends AppCompatActivity {
                     alertDialog.show();
                     return;
                 }
+            }
+        });
+
+        final Button create_account_button = (Button) findViewById(R.id.CreateAccountButton);
+        create_account_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
             }
         });
     }

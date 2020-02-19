@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.username = "";
         MainActivity.signedIn = false;
 
+        setTitle("Grading App");
+
         // loads data and creates singleton instance
         AppRoom.getAppRoom(MainActivity.this).loadData(this);
 
