@@ -1,6 +1,7 @@
 package edu.csumb.project1_cst438;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -11,13 +12,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+
+import edu.csumb.project1_cst438.Model.AppDatabase;
+import edu.csumb.project1_cst438.Model.Assignment;
+import edu.csumb.project1_cst438.Model.AssignmentDao;
 
 public class CreateAssignmentActivity extends AppCompatActivity {
 
@@ -32,6 +34,8 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 
     Button mAddAssignment;
     Button mCancelAssignmentCreation;
+
+    AssignmentDao mAssignmentDao;
 
 
     @Override
@@ -55,6 +59,11 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         mAddAssignment = findViewById(R.id.add_assignment_btn);
         mCancelAssignmentCreation = findViewById(R.id.cancel_btn);
 
+        mAssignmentDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.dbName)
+                .allowMainThreadQueries()
+                .build()
+                .assignmentDao();
+
         // TODO: add Room functionality here
 
         // date picker for date assigned
@@ -71,10 +80,11 @@ public class CreateAssignmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Gather the information of the text fields
-                System.out.println(retrieveAssignmentWithData()); // this is for testing
-                // grab all the data and make an object
-                // communicate with the db to upload object
-                // move up one level
+                mAssignmentDao.insert(retrieveAssignmentWithData());
+                Log.i(TAG, "Assignment should have been added to the database at this point");
+                // toast to inform user of the action
+                Toast.makeText(getApplicationContext(), "Assignment Added", Toast.LENGTH_LONG).show();
+                finish(); // return to the previous activity to continue working
             }
         });
 
@@ -133,6 +143,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         return timeListener;
     }
 
+    // retrieves the information given by the user in the form of an object
     private Assignment retrieveAssignmentWithData() {
         String title = mTitle.getText().toString();
         String description = mDescription.getText().toString();
@@ -144,8 +155,12 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 
         Assignment assignment = new Assignment(title, dateAssigned, dueDate, dueTime,
                 description, possibleScore);
+        assignment.setCourseId(getIncomingCourse());
 
-        // TODO: add room code here... ?
         return assignment;
+    }
+
+    private int getIncomingCourse() { // this may end up being a different type later
+        return getIntent().getIntExtra("courseId", 0);
     }
 }

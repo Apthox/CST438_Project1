@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +12,16 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import edu.csumb.project1_cst438.Model.AppDatabase;
+import edu.csumb.project1_cst438.Model.Assignment;
+import edu.csumb.project1_cst438.Model.AssignmentDao;
 
 public class MultiAssignmentDisplay extends AppCompatActivity {
 
-    ArrayList<Assignment> assignments;
+    List<Assignment> assignments;
+    AssignmentDao mAssignmentDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +42,23 @@ public class MultiAssignmentDisplay extends AppCompatActivity {
         DividerItemDecoration itemDecor = new DividerItemDecoration(rvAssignments.getContext(), DividerItemDecoration.VERTICAL);
         rvAssignments.addItemDecoration(itemDecor);
 
-        assignments = populateAssignmentHolder();
+        // get AssignmentDao to access the db
+        mAssignmentDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.dbName)
+                .allowMainThreadQueries()
+                .build()
+                .assignmentDao();
+
+        int courseId = getIncomingCourse();
+
+        assignments = populateAssignmentHolder(courseId);
 
         AssignmentsAdapter adapter = new AssignmentsAdapter(this, assignments);
         rvAssignments.setAdapter(adapter);
         rvAssignments.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    public ArrayList<Assignment> populateAssignmentHolder() {
-        ArrayList<Assignment> items = new ArrayList<>();
+    public List<Assignment> populateAssignmentHolder() {
+        List<Assignment> items = new ArrayList<>();
 
         Assignment testA = new Assignment("TitleTest", "01/01/2020", "02/01/2020",
                 "12:00", "very important information", 10);
@@ -96,5 +111,16 @@ public class MultiAssignmentDisplay extends AppCompatActivity {
         items.add(testP);
 
         return items;
+    }
+
+    public List<Assignment> populateAssignmentHolder(int course) {
+        List<Assignment> results;
+        results = mAssignmentDao.getAssignmentsInCourse(course);
+
+        return results;
+    }
+
+    private int getIncomingCourse() { // this may end up being a different type later
+        return getIntent().getIntExtra("courseId", 0);
     }
 }

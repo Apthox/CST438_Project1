@@ -3,10 +3,10 @@ package edu.csumb.project1_cst438;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.InputType;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import edu.csumb.project1_cst438.Model.Assignment;
 
 public class DisplayAssignmentInfo extends AppCompatActivity {
 

@@ -1,16 +1,18 @@
 /*
-* edu.csumb.project1_cst438.Assignment class is intended to store the information pertaining to an assignment.
+* edu.csumb.project1_cst438.Model.Assignment class is intended to store the information pertaining to an assignment.
 * That is to say holds Title, Date assigned, Due date and time, Description, Possible score
 * and Category.
 *
 * @Author   Juan Eduardo Garcia
 */
 
-package edu.csumb.project1_cst438;
+package edu.csumb.project1_cst438.Model;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -20,23 +22,32 @@ import java.util.Date;
 
 import edu.csumb.project1_cst438.Model.AppDatabase;
 
-//@Entity(tableName = AppDatabase.ASSIGNMENT_TABLE)
+@Entity(tableName = "Assignment_Table")
 public class Assignment implements Serializable {
 
+    @Ignore
     private static final String TAG = "Assignment";
+    @Ignore
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    @Ignore
     private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
-    //@PrimaryKey (autoGenerate = true)
+    @PrimaryKey (autoGenerate = true)
+    @NonNull
     private int assignmentId;
+    
+    @NonNull
     private int courseId;
+    @NonNull
     private int categoryId; // grading category (hw, test, quiz, etc.)
 
+    @NonNull
     private String title;
     private Long dateAssigned; // using long for ease of use
     private Long dueDate;
     private Long dueTime;
     private String description;
+
     private String category;
     private float possibleScore;
     private float scoreEarned;
@@ -65,6 +76,7 @@ public class Assignment implements Serializable {
     }
 
     // getter and setter for title --------------------------------------
+    @NonNull
     public String getTitle() {
         return title;
     }
@@ -169,6 +181,7 @@ public class Assignment implements Serializable {
     }
 
     // getter and setter for category ---------------------------------
+    @NonNull
     public String getCategory() {
         return category;
     }
@@ -178,6 +191,7 @@ public class Assignment implements Serializable {
     }
 
     // getter and setter for courseId ---------------------------------
+    @NonNull
     public int getCourseId() {
         return courseId;
     }
@@ -205,6 +219,7 @@ public class Assignment implements Serializable {
     }
 
     // getter and setter for assignmentId -----------------------------
+    @NonNull
     public int getAssignmentId() {
         return assignmentId;
     }
@@ -214,6 +229,7 @@ public class Assignment implements Serializable {
     }
 
     // getter and setter for categoryId -------------------------------
+    @NonNull
     public int getCategoryId() {
         return categoryId;
     }

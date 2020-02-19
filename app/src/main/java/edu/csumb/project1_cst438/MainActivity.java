@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // make button that takes you to Create edu.csumb.project1_cst438.Assignment Activity
+        // make button that takes you to Create edu.csumb.project1_cst438.Model.Assignment Activity
         // This section should be deleted later
 
         Button goToCreateAssigBtn = (Button) findViewById(R.id.go_to_create_assignment_activity_btn);

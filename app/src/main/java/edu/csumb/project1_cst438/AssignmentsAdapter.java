@@ -2,7 +2,6 @@ package edu.csumb.project1_cst438;
 
 import android.content.Context;
 import android.content.Intent;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import edu.csumb.project1_cst438.Model.Assignment;
 
 public class AssignmentsAdapter extends RecyclerView.Adapter<AssignmentsAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{

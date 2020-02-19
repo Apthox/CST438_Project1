@@ -1,12 +1,12 @@
 package edu.csumb.project1_cst438;
 
-import android.util.Log;
-
 import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import edu.csumb.project1_cst438.Model.Assignment;
 
 import static org.junit.Assert.*;
 
