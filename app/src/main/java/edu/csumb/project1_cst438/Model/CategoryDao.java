@@ -13,8 +13,8 @@ public interface CategoryDao {
     @Query("SELECT * FROM category")
     List<Category> getAllCategory();
 
-    @Query("SELECT * FROM category WHERE student_id IN (:userIds)")
-    List<User> loadAllByIds(int[] userIds);
+    @Query("SELECT * FROM category WHERE cid IN (:categoryIds)")
+    List<User> loadAllByIds(int[] categoryIds);
 
     @Insert
     void insertAll(Category... categories);

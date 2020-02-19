@@ -1,81 +1,75 @@
 package edu.csumb.project1_cst438.Model;
-
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import androidx.room.ColumnInfo;
 
 @Entity
 public class Category {
+        @PrimaryKey
+        public int cid; //category ID
 
-    @PrimaryKey
-    public int student_id;
+        @ColumnInfo(name = "category_name")
+        public String category_name;
 
-    public String categoryName;
-    public String categoryType;
-    public double categoryPercentage;
+        @ColumnInfo(name = "percentage")
+        public Double precentage;
 
-    public Category(String categoryName, String categoryType, double categoryPercentage) {
-        this.categoryName = categoryName;
-        this.categoryType = categoryType;
-        this.categoryPercentage = categoryPercentage;
-    }
+        public String categoryName;
+        public double categoryPercentage;
 
-    public String categoryName() {
-        return categoryName;
-    }
+        public Category(){ };
 
-    public void setCategoryNameame(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public String getCategoryType() {
-        return categoryType;
-    }
-
-    public void setCategoryType(String categoryType) {
-        this.categoryType = categoryType;
-    }
-
-    public double getCategoryPercentage() {
-        return categoryPercentage;
-    }
-
-    public void setCategoryPercentagePerecentage(double categoryPercentage) {
-        this.categoryPercentage = categoryPercentage;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "categoryName='" + categoryName + '\'' +
-                '}';
-    }
-
-    public void displayName(String categoryName){
-        System.out.print(categoryName);
-    }
-
-    public void displayGrades(double gradePoints){
-        if(gradePoints <= 100 && gradePoints > 89) {
-            System.out.print('A');
+        public Category(String categoryName, double categoryPercentage) {
+            this.categoryName = categoryName;
+            this.categoryPercentage = categoryPercentage;
         }
-        else if(gradePoints <= 89 && gradePoints > 79){
-            System.out.print('B');
+
+        public String categoryName() {
+            return categoryName;
         }
-        else if(gradePoints <= 79 && gradePoints > 69){
-            System.out.print('C');
+
+        public void setCategoryNameame(String categoryName) {
+            this.categoryName = categoryName;
         }
-        else if(gradePoints <= 69 && gradePoints > 59){
-            System.out.print('D');
+
+        public double getCaCategorytegoryPercentage() {
+            return categoryPercentage;
         }
-        else if (gradePoints < 59){
-            System.out.print('F');
+
+        public void setCategoryPercentagePerecentage(double categoryPercentage) {
+            this.categoryPercentage = categoryPercentage;
         }
-        else {
-            System.out.print("NULL");
+
+        @Override
+        public String toString() {
+            return "Category{" +
+                    "categoryName='" + categoryName + '\'' +
+                    '}';
+        }
+
+        public void displayName(String categoryName){
+            System.out.print(categoryName);
+        }
+
+        public void displayGrades(double gradePoints){
+            if(gradePoints <= 100 && gradePoints > 89) {
+                System.out.print('A');
+            }
+            else if(gradePoints <= 89 && gradePoints > 79){
+                System.out.print('B');
+            }
+            else if(gradePoints <= 79 && gradePoints > 69){
+                System.out.print('C');
+            }
+            else if(gradePoints <= 69 && gradePoints > 59){
+                System.out.print('D');
+            }
+            else if (gradePoints < 59){
+                System.out.print('F');
+            }
+            else {
+                System.out.print("NULL");
+            }
         }
     }
-}
+
