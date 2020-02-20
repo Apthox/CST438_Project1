@@ -17,10 +17,10 @@ public interface CategoryDao {
     void delete(Category...categories);
 
     @Query("SELECT * FROM " + AppRoom.CATEGORY_TABLE)
-    List<Category>getAllCategorys();
+    List<Category> getAllCategories();
 
     @Query("SELECT * FROM " + AppRoom.CATEGORY_TABLE + " WHERE userID == :userID and courseID == :courseID")
-    List<Category>getCategorys(int userID, int courseID);
+    List<Category>getCategories(int userID, int courseID);
 
 
     @Query("SELECT * FROM " + AppRoom.CATEGORY_TABLE + " WHERE category_name = :categoryName")

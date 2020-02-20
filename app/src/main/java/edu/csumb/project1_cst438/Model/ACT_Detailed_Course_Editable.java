@@ -51,6 +51,7 @@ public class ACT_Detailed_Course_Editable extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(instance, ACT_Initial_Category_Display.class);
+                intent.putExtra("courseID", selectedCourse);
                 startActivity(intent);
             }
         });

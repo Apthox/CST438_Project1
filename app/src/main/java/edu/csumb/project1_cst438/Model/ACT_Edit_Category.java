@@ -4,15 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import java.util.Calendar;
 import java.util.List;
 
 import edu.csumb.project1_cst438.R;
@@ -38,7 +33,7 @@ public class ACT_Edit_Category extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build()
                 .getCategoryDao();
-        mCategoryList = mCategoryDao.getAllCategorys();
+        mCategoryList = mCategoryDao.getAllCategories();
 
     }
 

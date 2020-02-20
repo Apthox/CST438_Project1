@@ -28,10 +28,11 @@ public class Category {
 
     private int courseID;
 
-    public Category(int cid, String categoryName, double categoryPercentage) {
-        this.cid = cid;
+    public Category(String categoryName, double categoryPercentage, int userID, int courseID) {
         this.categoryName = categoryName;
         this.categoryPercentage = categoryPercentage;
+        this.userID = userID;
+        this.courseID = courseID;
     }
 
     public int getUserID() {

@@ -8,6 +8,7 @@ import androidx.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
     RecyclerView.LayoutManager layoutManager;
     CategoryDao mCategoryDao;
     List<Category> mCategoryList;
+    int selectedCourse = -1;
 
     MyAdapter adapter;
 
@@ -44,7 +46,24 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
         mDisplay = findViewById(R.id.Category_display);
         layoutManager = new LinearLayoutManager(this);
         //mDisplay.setLayoutManager(layoutManager);
-        mCategoryList = mCategoryDao.getAllCategorys();
+
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null){
+            selectedCourse = bundle.getInt("courseID");
+        }
+
+        Category cat = new Category("Podcast Homeworks", 20, MainActivity.uid, selectedCourse);
+        mCategoryDao.insert(cat);
+        Log.d("Category Activity", "Created new category 1> " + cat.getCid());
+
+        Category cat2 = new Category("Podcast Exams", 50, MainActivity.uid, selectedCourse);
+        mCategoryDao.insert(cat2);
+        Log.d("Category Activity", "Created new category 2> " + cat2.getCid());
+
+        mCategoryList = mCategoryDao.getCategories(MainActivity.uid, selectedCourse);
+
+        Log.d("Category Display", "Results > " + mCategoryList.size());
 
         ArrayList<String> titles = new ArrayList<>();
         ArrayList<Integer> IDs = new ArrayList<>();
@@ -52,6 +71,7 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
         for (Category category : mCategoryList) {
             titles.add(category.getCategoryName());
             IDs.add(category.getCid());
+            Log.d("Category Activity", "ID > " + category.getCid());
         }
 
         mDisplay.setLayoutManager(new LinearLayoutManager(this));
@@ -88,6 +108,7 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
     }
     public void add(View view){
         Intent intent = new Intent(this,ACT_Add_Category.class);
+        intent.putExtra("course_id", selectedCourse);
         startActivity(intent);
     }
 }

@@ -4,19 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputFilter;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.List;
+
+import edu.csumb.project1_cst438.MainActivity;
 import edu.csumb.project1_cst438.R;
 
 public class ACT_Add_Category extends AppCompatActivity {
@@ -24,6 +21,7 @@ public class ACT_Add_Category extends AppCompatActivity {
     Button mDone, mAdd;
     CategoryDao mCategoryDao;
     boolean taken;
+    int course_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +39,12 @@ public class ACT_Add_Category extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build()
                 .getCategoryDao();
+
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null){
+            course_id = bundle.getInt("course_id");
+        }
 
     }
 
@@ -66,7 +70,7 @@ public class ACT_Add_Category extends AppCompatActivity {
             String mTmpName = mCategoryName.getText().toString();
             Double mTmpPercentage = Double.parseDouble(mCategoryPercentage.getText().toString());
             Integer mTmpCategoryID = Integer.parseInt(mID.getText().toString());
-            List<Category> mCategoryList = mCategoryDao.getAllCategorys();
+            List<Category> mCategoryList = mCategoryDao.getAllCategories();
 
             //Checking ID matches
             for (Category c : mCategoryList) {
@@ -84,7 +88,8 @@ public class ACT_Add_Category extends AppCompatActivity {
             } else if (!taken) {
                 //Insert Portion
                 //name,instructor,description,start date, end date,courseID
-                Category category = new Category(mTmpCategoryID, mTmpName, mTmpPercentage);
+                Log.d("Add Category", "Inserting Data");
+                Category category = new Category(mTmpName, mTmpPercentage, course_id, MainActivity.uid);
                 mCategoryDao.insert(category);
                 //clear screen???
                 mCategoryName.getText().clear();
