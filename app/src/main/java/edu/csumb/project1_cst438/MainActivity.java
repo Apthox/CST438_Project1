@@ -54,4 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
         return alertDialogBuilder.create();
     }
+
+    public static void logout() {
+        MainActivity.username = "";
+        MainActivity.signedIn = false;
+    }
 }
