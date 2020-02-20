@@ -90,6 +90,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return "CourseInfo: " + mCourseTitle + mCourseDescription + mInstructor + mCourseID + mStartDate + mEndDate;
+        return "CourseInfo: \n\n\t" + mCourseTitle + "\n\n\t" + mCourseDescription + "\n\n\t" +
+                mInstructor + "\n\n\t" + mCourseID + "\n\n\t" + mStartDate + "\n\n\t" + mEndDate;
     }
 }
