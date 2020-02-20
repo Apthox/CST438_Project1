@@ -1,3 +1,66 @@
 <resources>
     <string name="app_name">Project1_CST438</string>
+    <string name="course_id_entry">Enter_Course_ID</string>
+    <string name="course_instructor_entry">Enter_Instructor</string>
+    <string name="course_description_entry">Enter_Description</string>
+    <string name="course_end_date_entry">Enter_End_Date</string>
+    <string name="course_start_date_entry">Enter_Start_Date</string>
+    <string name="course_title_entry">Enter_Title</string>
+    <string name="button_add_course">Add Course</string>
+    <string name="button_done">Done</string>
+    <string name="button_edit_course">Edit</string>
+    <string name="button_delete_course">Delete</string>
+    <string-array name="spin_year">
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2024</item>
+    </string-array>
+    <string-array name="spin_month">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+    <string-array name="spin_day">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+    </string-array>
 </resources>
