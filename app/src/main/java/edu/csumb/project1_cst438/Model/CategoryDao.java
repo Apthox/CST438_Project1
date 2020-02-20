@@ -13,16 +13,20 @@ public interface CategoryDao {
 
     @Insert
     void insert(Category...categories);
-    @Update
-    void update(Category...categories);
     @Delete
     void delete(Category...categories);
 
-    @Query("SELECT * FROM " + AppDatabase.CATEGORY_TABLE)
-    List<Category>getAllCourses();
-    @Query("SELECT * FROM " + AppDatabase.CATEGORY_TABLE + " WHERE category_name = :categoryName")
+    @Query("SELECT * FROM " + AppRoom.CATEGORY_TABLE)
+    List<Category>getAllCategorys();
+
+    @Query("SELECT * FROM " + AppRoom.CATEGORY_TABLE + " WHERE userID == :userID and courseID == :courseID")
+    List<Category>getCategorys(int userID, int courseID);
+
+
+    @Query("SELECT * FROM " + AppRoom.CATEGORY_TABLE + " WHERE category_name = :categoryName")
     Category getCategoryByName(String categoryName);
-    @Query("SELECT * FROM " + AppDatabase.CATEGORY_TABLE + " WHERE percentage = :categoryPercentage")
+    @Query("SELECT * FROM " + AppRoom.CATEGORY_TABLE + " WHERE category_percentage = :categoryPercentage")
     Category getCategoryPercentage(double categoryPercentage);
+
 
 }

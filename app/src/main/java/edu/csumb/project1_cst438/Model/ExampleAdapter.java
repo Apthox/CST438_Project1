@@ -1,51 +1,64 @@
 package edu.csumb.project1_cst438.Model;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import edu.csumb.project1_cst438.R;
 
+public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHolder> {
+    private List<String> categories;
+    private LayoutInflater mInflater;
+    private ItemClickListener mClickListener;
 
-public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
-    private ArrayList<MyList> mExampleList;
+    ExampleAdapter(Context context, List<String>data){
+        this.mInflater = LayoutInflater.from(context);
+        this.categories = data;
+    }
 
-    public static class ExampleViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView1;
-
-
-        public ExampleViewHolder(View itemView) {
+    public interface ItemClickListener{
+        void onItemClick(View view, int position);
+    }
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        TextView myTextView;
+        ViewHolder(View itemView){
             super(itemView);
-            mTextView1 = itemView.findViewById(R.id.category_type);
+            myTextView = itemView.findViewById(R.id.dataname);
+            itemView.setOnClickListener(this);
         }
-    }
+        @Override
+        public void onClick(View view){
+            if (mClickListener !=null){
+                mClickListener.onItemClick(view,getAdapterPosition());
+            }
+        }
 
-    public ExampleAdapter(ArrayList<MyList> exampleList) {
-        mExampleList = exampleList;
     }
-
     @Override
-    public ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.category, parent, false);
-        ExampleViewHolder evh = new ExampleViewHolder(v);
-        return evh;
+    public ViewHolder onCreateViewHolder(ViewGroup parent,int viewType){
+        View view = mInflater.inflate(R.layout.recy_row,parent,false);
+        return new ViewHolder(view);
     }
-
     @Override
-    public void onBindViewHolder(ExampleViewHolder holder, int position) {
-        MyList currentItem = mExampleList.get(position);
-
-        holder.mTextView1.setText(currentItem.getHead());
+    public void onBindViewHolder(ViewHolder holder,int position){
+        String dataText = mData.get(position);
+        holder.myTextView.setText(dataText);
     }
-
     @Override
-    public int getItemCount() {
-        return mExampleList.size();
+    public int getItemCount(){
+        return mData.size();
+    }
+    String getItem(int id){
+        return mData.get(id);
+    }
+    void setClickListener(ItemClickListener itemClickListener){
+        this.mClickListener = itemClickListener;
     }
 }
+

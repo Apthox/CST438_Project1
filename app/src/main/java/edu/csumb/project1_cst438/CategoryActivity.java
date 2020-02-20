@@ -41,7 +41,6 @@ public class CategoryActivity extends AppCompatActivity {
         buildRecyclerView();
 
         add_button = findViewById(R.id.add_button);
-        remove_button = findViewById(R.id.remove_button);
         TextView gradeView = (TextView) findViewById(R.id.grade_view);
         TextView password = (TextView) findViewById(R.id.grade_percent_view);
 
