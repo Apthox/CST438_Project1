@@ -21,7 +21,7 @@ public class ACT_Add_Category extends AppCompatActivity {
     Button mDone, mAdd;
     CategoryDao mCategoryDao;
     boolean taken;
-    int course_id;
+    int course_id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,8 @@ public class ACT_Add_Category extends AppCompatActivity {
             course_id = bundle.getInt("course_id");
         }
 
+        Log.d("Add Category", "Course ID > " + course_id);
+
     }
 
     /*
@@ -57,7 +59,7 @@ public class ACT_Add_Category extends AppCompatActivity {
         //Logic portion
 
         //Test if issues occur, including blanks
-        if (mID.getText().toString().equals("")||mCategoryName.getText().toString().equals("")||mCategoryPercentage.getText().toString().equals("")){
+        if (mCategoryName.getText().toString().equals("") || mCategoryPercentage.getText().toString().equals("")){
             //a blank was entered, dialog confirm
             new AlertDialog.Builder(this)
                     .setTitle("Empty Entry Detected")
@@ -65,37 +67,38 @@ public class ACT_Add_Category extends AppCompatActivity {
                     .setPositiveButton(android.R.string.yes,null)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
-        }else {
+        } else {
             //Retrieve all values
             String mTmpName = mCategoryName.getText().toString();
-            Double mTmpPercentage = Double.parseDouble(mCategoryPercentage.getText().toString());
-            Integer mTmpCategoryID = Integer.parseInt(mID.getText().toString());
-            List<Category> mCategoryList = mCategoryDao.getAllCategories();
-
-            //Checking ID matches
-            for (Category c : mCategoryList) {
-                if (c.getCid() == mTmpCategoryID) {
-                    taken = true;
-                }
-            }
-            if (taken) {
-                new AlertDialog.Builder(this)
-                        .setTitle("CategoryIdError")
-                        .setMessage("This Category ID is Taken, Please Change It")
-                        .setPositiveButton(android.R.string.yes, null)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-            } else if (!taken) {
+            double mTmpPercentage = Double.parseDouble(mCategoryPercentage.getText().toString());
+//            Integer mTmpCategoryID = Integer.parseInt(mID.getText().toString());
+//            List<Category> mCategoryList = mCategoryDao.getAllCategories();
+//
+//            //Checking ID matches
+//            for (Category c : mCategoryList) {
+//                if (c.getCid() == mTmpCategoryID) {
+//                    taken = true;
+//                }
+//            }
+//            if (taken) {
+//                new AlertDialog.Builder(this)
+//                        .setTitle("CategoryIdError")
+//                        .setMessage("This Category ID is Taken, Please Change It")
+//                        .setPositiveButton(android.R.string.yes, null)
+//                        .setIcon(android.R.drawable.ic_dialog_alert)
+//                        .show();
+//            } else if (!taken) {
                 //Insert Portion
                 //name,instructor,description,start date, end date,courseID
-                Log.d("Add Category", "Inserting Data");
-                Category category = new Category(mTmpName, mTmpPercentage, course_id, MainActivity.uid);
-                mCategoryDao.insert(category);
+
+            Log.d("Add Category", "Inserting Data");
+            Category category = new Category(mTmpName, mTmpPercentage, MainActivity.uid, course_id);
+            mCategoryDao.insert(category);
                 //clear screen???
-                mCategoryName.getText().clear();
-                mCategoryPercentage.getText().clear();
-                mID.getText().clear();
-            }
+//            CategoryName.getText().clear();
+            mCategoryPercentage.getText().clear();
+            mID.getText().clear();
+//            }
         }
 
 

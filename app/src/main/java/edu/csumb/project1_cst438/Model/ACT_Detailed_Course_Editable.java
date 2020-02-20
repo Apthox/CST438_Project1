@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -51,7 +52,8 @@ public class ACT_Detailed_Course_Editable extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(instance, ACT_Initial_Category_Display.class);
-                intent.putExtra("courseID", selectedCourse);
+                Log.d("Detailed Course", "Course id > " + selectedCourse);
+                intent.putExtra("course_id", selectedCourse);
                 startActivity(intent);
             }
         });

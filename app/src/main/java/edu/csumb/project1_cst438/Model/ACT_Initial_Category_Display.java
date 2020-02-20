@@ -50,16 +50,18 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
         Bundle bundle = getIntent().getExtras();
 
         if (bundle != null){
-            selectedCourse = bundle.getInt("courseID");
+            selectedCourse = bundle.getInt("course_id");
         }
 
-        Category cat = new Category("Podcast Homeworks", 20, MainActivity.uid, selectedCourse);
-        mCategoryDao.insert(cat);
-        Log.d("Category Activity", "Created new category 1> " + cat.getCid());
-
-        Category cat2 = new Category("Podcast Exams", 50, MainActivity.uid, selectedCourse);
-        mCategoryDao.insert(cat2);
-        Log.d("Category Activity", "Created new category 2> " + cat2.getCid());
+//        Log.d("Category Activity", "Course ID > " + selectedCourse);
+//
+//        Category cat = new Category("Podcast Homeworks", 20, MainActivity.uid, selectedCourse);
+//        mCategoryDao.insert(cat);
+//        Log.d("Category Activity", "Created new category 1> " + cat.getCid());
+//
+//        Category cat2 = new Category("Podcast Exams", 50, MainActivity.uid, selectedCourse);
+//        mCategoryDao.insert(cat2);
+//        Log.d("Category Activity", "Created new category 2> " + cat2.getCid());
 
         mCategoryList = mCategoryDao.getCategories(MainActivity.uid, selectedCourse);
 
@@ -90,6 +92,18 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
                 Intent intent = new Intent(instance, LoginActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+
+
+        Button add_cat_button = findViewById(R.id.button_add);
+        add_cat_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(instance, ACT_Add_Category.class);
+                intent.putExtra("course_id", selectedCourse);
+                startActivity(intent);
             }
         });
     }
