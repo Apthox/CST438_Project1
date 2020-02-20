@@ -16,6 +16,9 @@ public abstract class AppRoom extends RoomDatabase {
 
     public abstract UserDao userDao();
 
+    public static final String COURSE_TABLE="course";
+    public abstract CourseDao getCourseDao();
+
     public static AppRoom getAppRoom(final Context context){
 
         if (instance == null) {
