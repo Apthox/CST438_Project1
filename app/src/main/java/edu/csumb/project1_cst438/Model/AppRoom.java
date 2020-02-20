@@ -18,9 +18,11 @@ public abstract class AppRoom extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract AssignmentDao assignmentDao();
     public abstract CourseDao getCourseDao();
+    public abstract CategoryDao getCategoryDao();
 
     public static final String ASSIGNMENTS_TABLE = "Assignment_Table";
     public static final String COURSE_TABLE="course";
+    public static final String CATEGORY_TABLE="category";
 
     public static AppRoom getAppRoom(final Context context){
 
@@ -41,10 +43,10 @@ public abstract class AppRoom extends RoomDatabase {
         // if user table is empty, then load data for users and flights
         List<User> user_list = AppRoom.getAppRoom(context).userDao().getAllUsers();
         if (user_list.size() == 0) {
-            Log.d("FlightRoom", "loading data ");
+            Log.d("GradingDB", "loading data ");
             loadUsers(context);
         } else {
-            Log.d("FlightRoom", "data retained!");
+            Log.d("GradingDB", "data retained!");
         }
     }
 
@@ -59,6 +61,6 @@ public abstract class AppRoom extends RoomDatabase {
         dao.insert(brian);
         dao.insert(chris);
         dao.insert(kevin);
-        Log.d("FlightRoom", "4 users added to database");
+        Log.d("GradingDB", "4 users added to database");
     }
 }

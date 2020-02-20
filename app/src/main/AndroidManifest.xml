@@ -13,6 +13,7 @@
         <activity android:name=".Model.ACT_Detailed_Course_Editable" />
         <activity android:name=".tests" />
         <activity android:name=".Model.ACT_Initial_Course_Display" />
+        <activity android:name=".Model.ACT_Initial_Category_Display" />
         <activity android:name=".Model.ACT_Add_Course" />
         <activity android:name=".EditAssignmentActivity"></activity>
         <activity android:name=".MultiAssignmentDisplay" />

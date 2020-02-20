@@ -43,6 +43,18 @@ public class ACT_Detailed_Course_Editable extends AppCompatActivity {
             mDisplay.setText(temp.toString());
         }
 
+        final ACT_Detailed_Course_Editable instance = this;
+
+        Button view_button = findViewById(R.id.ViewButton);
+
+        view_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(instance, ACT_Initial_Category_Display.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void onDelete(View view){

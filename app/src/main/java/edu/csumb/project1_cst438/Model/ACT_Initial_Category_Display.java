@@ -78,10 +78,9 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
         /**
          * here is what will happen to any given value clicked
          */
-        String clickedIDFull = adapter.getItem(position);
-        String clickedIDSub = clickedIDFull.substring(4,7);
-        Integer clickedID = Integer.parseInt(clickedIDSub);
-        String selectedCategory = "selectedCategory";
+
+        int cat_id = adapter.getID(position);
+
         //Intent detail = new Intent(this,ACT_Detailed_Category_Editable.class);
         //detail.putExtra("selectedCategory",clickedID);
         //startActivity(detail);
