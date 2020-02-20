@@ -107,10 +107,7 @@ public class ACT_Add_Category extends AppCompatActivity {
     This is the return button or like "im done entering stuff button"
      */
     public void onDone(View view){
-
-        Intent back = new Intent(this,ACT_Initial_Category_Display.class);
-        startActivity(back);
-
+        finish();
     }
 
 

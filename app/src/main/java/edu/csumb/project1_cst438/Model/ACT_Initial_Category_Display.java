@@ -1,5 +1,6 @@
 package edu.csumb.project1_cst438.Model;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -108,6 +109,31 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mCategoryList = mCategoryDao.getCategories(MainActivity.uid, selectedCourse);
+
+        Log.d("Category Display", "Results > " + mCategoryList.size());
+
+        ArrayList<String> titles = new ArrayList<>();
+        ArrayList<Integer> IDs = new ArrayList<>();
+
+        for (Category category : mCategoryList) {
+            titles.add(category.getCategoryName());
+            IDs.add(category.getCid());
+            Log.d("Category Activity", "ID > " + category.getCid());
+        }
+
+        mDisplay.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new MyAdapter(this, IDs, titles);
+        adapter.setClickListener(this);
+        mDisplay.setAdapter(adapter);
+    }
+
     @Override
     public void onItemClick(View view, int position){
 
