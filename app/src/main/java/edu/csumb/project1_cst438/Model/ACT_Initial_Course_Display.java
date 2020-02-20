@@ -50,15 +50,17 @@ public class ACT_Initial_Course_Display extends AppCompatActivity implements MyA
          * here is where we would pull any data from the database
          *
          */
-        ArrayList<String> useData = new ArrayList<>();
+        ArrayList<String> titles = new ArrayList<>();
+        ArrayList<Integer> IDs = new ArrayList<>();
 
         for (Course course : mCourseList) {
             //useData.add("CourseTitle: "+course.getCourseTitle());
-            useData.add("ID#:" +course.getCourseID());
+            titles.add(course.getCourseTitle());
+            IDs.add(course.getCourseID());
         }
         mDisplay.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new MyAdapter(this,useData);
+        adapter = new MyAdapter(this, IDs, titles);
         adapter.setClickListener(this);
         mDisplay.setAdapter(adapter);
 
@@ -80,12 +82,12 @@ public class ACT_Initial_Course_Display extends AppCompatActivity implements MyA
         /**
          * here is what will happen to any given value clicked
          */
-        String clickedIDFull = adapter.getItem(position);
-        String clickedIDSub = clickedIDFull.substring(4,7);
-        Integer clickedID = Integer.parseInt(clickedIDSub);
+//        String clickedIDFull = adapter.getItem(position);
+//        String clickedIDSub = clickedIDFull.substring(4,7);
+//        Integer clickedID = Integer.parseInt(clickedIDSub);
         String selectedCourse = "selectedCourse";
         Intent detail = new Intent(this,ACT_Detailed_Course_Editable.class);
-        detail.putExtra("selectedCourse",clickedID);
+        detail.putExtra("selectedCourse", adapter.getID(position));
         startActivity(detail);
 
     }

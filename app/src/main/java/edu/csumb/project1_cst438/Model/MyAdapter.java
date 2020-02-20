@@ -7,19 +7,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Ignore;
 
 import java.util.List;
 
 import edu.csumb.project1_cst438.R;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private List<String>mData;
+    private List<String> titles;
+    private List<Integer> IDs;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    MyAdapter(Context context, List<String>data){
+    MyAdapter(Context context, List<Integer> IDs, List<String> titles){
         this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
+        this.IDs = IDs;
+        this.titles = titles;
     }
 
     public interface ItemClickListener{
@@ -46,17 +49,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             return new ViewHolder(view);
         }
         @Override
-        public void onBindViewHolder(ViewHolder holder,int position){
-            String dataText = mData.get(position);
+        public void onBindViewHolder(ViewHolder holder, int position){
+            String dataText = titles.get(position);
             holder.myTextView.setText(dataText);
         }
         @Override
         public int getItemCount(){
-            return mData.size();
+            return titles.size();
         }
-        String getItem(int id){
-            return mData.get(id);
+        String getTitle(int pos){
+            return titles.get(pos);
         }
+
+        int getID(int pos) {
+            return IDs.get(pos);
+        }
+
         void setClickListener(ItemClickListener itemClickListener){
             this.mClickListener = itemClickListener;
         }
