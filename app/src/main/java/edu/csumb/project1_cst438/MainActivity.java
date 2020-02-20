@@ -2,11 +2,21 @@ package edu.csumb.project1_cst438;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+import edu.csumb.project1_cst438.Model.ACT_Initial_Course_Display;
+import edu.csumb.project1_cst438.Model.AppDatabase;
+import edu.csumb.project1_cst438.Model.Course;
+import edu.csumb.project1_cst438.Model.CourseDao;
 
 import edu.csumb.project1_cst438.Model.AppRoom;
 
@@ -22,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivity.username = "";
         MainActivity.signedIn = false;
-
-        setTitle("Grading App");
 
         // loads data and creates singleton instance
         AppRoom.getAppRoom(MainActivity.this).loadData(this);
