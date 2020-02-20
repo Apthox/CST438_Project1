@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 import edu.csumb.project1_cst438.InputFilterMinMaxId;
+import edu.csumb.project1_cst438.MainActivity;
 import edu.csumb.project1_cst438.R;
 
 public class ACT_Add_Course extends AppCompatActivity {
@@ -122,7 +123,7 @@ public class ACT_Add_Course extends AppCompatActivity {
             } else if (!taken) {
                 //Insert Portion
                 //title,instructor,description,start date, end date,courseID
-                Course course = new Course(mTmpTitle, mTmpInstructor, mTmpDescription, mTmpStartDate, mTmpEndDate, mTmpCourseID);
+                Course course = new Course(mTmpTitle, mTmpInstructor, mTmpDescription, mTmpStartDate, mTmpEndDate, mTmpCourseID, MainActivity.uid);
                 mCourseDao.insert(course);
                 //clear screen???
                 mTitle.getText().clear();

@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.csumb.project1_cst438.Model.ACT_Initial_Course_Display;
 import edu.csumb.project1_cst438.Model.AppRoom;
 import edu.csumb.project1_cst438.Model.User;
 import edu.csumb.project1_cst438.Model.UserDao;
@@ -62,7 +63,18 @@ public class SignUpActivity extends AppCompatActivity {
                 MainActivity.username = new_user.getUsername();
                 MainActivity.signedIn = true;
 
-                // TODO: switch to courses intent
+
+                AlertDialog alertDialog = MainActivity.createAlertDialog(instance, "Alert", "User authenticated!");
+                alertDialog.show();
+
+                MainActivity.signedIn = true;
+                MainActivity.username = new_user.getUsername();
+                MainActivity.uid = new_user.uid;
+
+                // TODO: Place intent here for course display page
+                Intent intent = new Intent(instance, ACT_Initial_Course_Display.class);
+                startActivity(intent);
+                finish();
 
 
                 setResult(-1, null);

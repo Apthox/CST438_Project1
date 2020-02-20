@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.List;
 
+import edu.csumb.project1_cst438.MainActivity;
 import edu.csumb.project1_cst438.R;
 
 public class ACT_Edit_Course extends AppCompatActivity {
@@ -65,7 +66,7 @@ public class ACT_Edit_Course extends AppCompatActivity {
             String mTmpEndDate = mEnd.getText().toString();
             Integer mTmpCourseID = Integer.parseInt(mID.getText().toString());
             //temporarily remove the currently being edited course
-            Course editted = new Course(mTmpTitle, mTmpInstructor, mTmpDescription, mTmpStartDate, mTmpEndDate, mTmpCourseID);
+            Course editted = new Course(mTmpTitle, mTmpInstructor, mTmpDescription, mTmpStartDate, mTmpEndDate, mTmpCourseID, MainActivity.uid);
             Course holdingCell = mCourseDao.getCourseByID(refId);
             mCourseDao.delete(mCourseDao.getCourseByID(refId));
             for (Course c : mCourseList) {

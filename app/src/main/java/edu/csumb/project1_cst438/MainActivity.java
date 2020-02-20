@@ -22,6 +22,7 @@ import edu.csumb.project1_cst438.Model.AppRoom;
 public class MainActivity extends AppCompatActivity {
 
     static public String username;
+    static public int uid;
     static public boolean signedIn;
 
     @Override

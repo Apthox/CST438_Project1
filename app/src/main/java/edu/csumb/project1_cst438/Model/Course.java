@@ -19,17 +19,28 @@ public class Course {
     //@ColumnInfo
     private Integer mCourseID;
 
+    public int getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(int userID) {
+        UserID = userID;
+    }
+
+    private int UserID;
+
     private String mInstructor,mCourseTitle,mCourseDescription,mStartDate,mEndDate;
 
 
 
-    public Course(String mCourseTitle, String mInstructor, String mCourseDescription, String mStartDate, String mEndDate, Integer mCourseID) {
+    public Course(String mCourseTitle, String mInstructor, String mCourseDescription, String mStartDate, String mEndDate, Integer mCourseID, int UserID) {
         this.mInstructor = mInstructor;
         this.mCourseTitle = mCourseTitle;
         this.mCourseDescription = mCourseDescription;
         this.mStartDate = mStartDate;
         this.mEndDate = mEndDate;
         this.mCourseID = mCourseID;
+        this.UserID = UserID;
     }
 
     public String getInstructor() {
