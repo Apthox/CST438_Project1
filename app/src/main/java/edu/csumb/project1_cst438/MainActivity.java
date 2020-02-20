@@ -1,7 +1,10 @@
 package edu.csumb.project1_cst438;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -31,5 +34,24 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public static AlertDialog createAlertDialog(Context context, String title, String text) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+        // set title
+        alertDialogBuilder.setTitle(title);
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage(text)
+                .setCancelable(true)
+                .setNegativeButton("Close",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        return alertDialogBuilder.create();
     }
 }

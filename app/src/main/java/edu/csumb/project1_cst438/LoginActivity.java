@@ -32,16 +32,13 @@ public class LoginActivity extends AppCompatActivity {
         final Button sign_in_button = (Button) findViewById(R.id.SignInButton);
         sign_in_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Perform action on click
-                Intent activityChangeIntent = new Intent(LoginActivity.this, MainActivity.class);
-
                 UserDao dao = AppRoom.getAppRoom(instance).userDao();
 
                 EditText username = (EditText) findViewById(R.id.UsernameInput);
                 EditText password = (EditText) findViewById(R.id.PasswordInput);
 
                 if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
-                    AlertDialog alertDialog = createAlertDialog("Alert", "Input username and password!");
+                    AlertDialog alertDialog = MainActivity.createAlertDialog(instance, "Alert", "Input username and password!");
                     alertDialog.show();
                     return;
                 }
@@ -49,13 +46,13 @@ public class LoginActivity extends AppCompatActivity {
                 User user = dao.getUser(username.getText().toString());
 
                 if (user == null) {
-                    AlertDialog alertDialog = createAlertDialog("Alert", "User does not exist in the database!");
+                    AlertDialog alertDialog = MainActivity.createAlertDialog(instance, "Alert", "User does not exist in the database!");
                     alertDialog.show();
                     return;
                 }
 
                 if (user.getPassword().equals(password.getText().toString())) {
-                    AlertDialog alertDialog = createAlertDialog("Alert", "User authenticated!");
+                    AlertDialog alertDialog = MainActivity.createAlertDialog(instance, "Alert", "User authenticated!");
                     alertDialog.show();
 
                     MainActivity.signedIn = true;
@@ -65,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     return;
                 } else {
-                    AlertDialog alertDialog = createAlertDialog("Alert", "Password was incorrect!");
+                    AlertDialog alertDialog = MainActivity.createAlertDialog(instance, "Alert", "Password was incorrect!");
                     alertDialog.show();
                     return;
                 }
@@ -80,24 +77,5 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    private AlertDialog createAlertDialog(String title, String text) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
-        // set title
-        alertDialogBuilder.setTitle(title);
-
-        // set dialog message
-        alertDialogBuilder
-                .setMessage(text)
-                .setCancelable(true)
-                .setNegativeButton("Close",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        return alertDialogBuilder.create();
     }
 }
