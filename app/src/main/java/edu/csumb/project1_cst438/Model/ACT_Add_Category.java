@@ -96,7 +96,6 @@ public class ACT_Add_Category extends AppCompatActivity {
                 //clear screen???
 //            CategoryName.getText().clear();
             mCategoryPercentage.getText().clear();
-            mID.getText().clear();
 //            }
         }
 
