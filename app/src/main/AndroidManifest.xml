@@ -15,6 +15,9 @@
         <activity android:name=".Model.ACT_Initial_Course_Display" />
         <activity android:name=".Model.ACT_Initial_Category_Display" />
         <activity android:name=".Model.ACT_Add_Course" />
+        <activity android:name=".Model.ACT_Add_Category" />
+        <activity android:name=".Model.ACT_Detailed_Category_Editable" />
+        <activity android:name=".Model.ACT_Edit_Category"></activity>
         <activity android:name=".EditAssignmentActivity"></activity>
         <activity android:name=".MultiAssignmentDisplay" />
         <activity android:name=".DisplayAssignmentInfo" />
