@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import edu.csumb.project1_cst438.LoginActivity;
+import edu.csumb.project1_cst438.MainActivity;
 import edu.csumb.project1_cst438.R;
 
 public class ACT_Initial_Course_Display extends AppCompatActivity implements MyAdapter.ItemClickListener {
@@ -60,6 +62,18 @@ public class ACT_Initial_Course_Display extends AppCompatActivity implements MyA
         adapter.setClickListener(this);
         mDisplay.setAdapter(adapter);
 
+        final ACT_Initial_Course_Display instance = this;
+
+        Button logout_button = findViewById(R.id.logout_button);
+        logout_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.logout();
+                Intent intent = new Intent(instance, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     @Override
     public void onItemClick(View view, int position){
