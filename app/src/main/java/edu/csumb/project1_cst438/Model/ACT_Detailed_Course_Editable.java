@@ -32,7 +32,7 @@ public class ACT_Detailed_Course_Editable extends AppCompatActivity {
         mDeleteButton = findViewById(R.id.button_delete_course);
         mEditButton = findViewById(R.id.button_edit_course);
         mDisplay = findViewById(R.id.selectedDisplay);
-        mCourseDao = Room.databaseBuilder(this,AppDatabase.class,AppDatabase.COURSE_TABLE)
+        mCourseDao = Room.databaseBuilder(this,AppRoom.class, AppRoom.COURSE_TABLE)
                 .allowMainThreadQueries()
                 .build()
                 .getCourseDao();

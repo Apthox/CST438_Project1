@@ -34,7 +34,7 @@ public class ACT_Initial_Course_Display extends AppCompatActivity implements MyA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act__initial__course__display);
 
-        mCourseDao = Room.databaseBuilder(this,AppDatabase.class,AppDatabase.COURSE_TABLE)
+        mCourseDao = Room.databaseBuilder(this,AppRoom.class,AppRoom.COURSE_TABLE)
                 .allowMainThreadQueries()
                 .build()
                 .getCourseDao();

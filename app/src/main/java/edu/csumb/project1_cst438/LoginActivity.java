@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
+import edu.csumb.project1_cst438.Model.ACT_Initial_Course_Display;
 import edu.csumb.project1_cst438.Model.AppRoom;
 import edu.csumb.project1_cst438.Model.User;
 import edu.csumb.project1_cst438.Model.UserDao;
@@ -59,6 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                     MainActivity.username = user.getUsername();
 
                     // TODO: Place intent here for course display page
+                    Intent intent = new Intent(instance, ACT_Initial_Course_Display.class);
+                    startActivity(intent);
+                    finish();
 
                     return;
                 } else {

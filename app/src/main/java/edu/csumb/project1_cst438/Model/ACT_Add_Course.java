@@ -50,7 +50,7 @@ public class ACT_Add_Course extends AppCompatActivity {
         mStart.setOnClickListener(generateDateListener(mStart));
         mEnd.setOnClickListener(generateDateListener(mEnd));
 
-        mCourseDao = Room.databaseBuilder(this,AppDatabase.class,AppDatabase.COURSE_TABLE)
+        mCourseDao = Room.databaseBuilder(this,AppRoom.class,AppRoom.COURSE_TABLE)
                 .allowMainThreadQueries()
                 .build()
                 .getCourseDao();
