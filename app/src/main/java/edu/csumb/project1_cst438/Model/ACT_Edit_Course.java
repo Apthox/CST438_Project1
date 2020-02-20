@@ -38,7 +38,7 @@ public class ACT_Edit_Course extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         refId = b.getInt("refID");
         taken = false;
-        mCourseDao = Room.databaseBuilder(this,AppDatabase.class,AppDatabase.COURSE_TABLE)
+        mCourseDao = Room.databaseBuilder(this,AppRoom.class,AppRoom.COURSE_TABLE)
                 .allowMainThreadQueries()
                 .build()
                 .getCourseDao();

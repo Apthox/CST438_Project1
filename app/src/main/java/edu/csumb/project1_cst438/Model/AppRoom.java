@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 
 import java.util.List;
 
-@Database(entities = {User.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, Course.class}, version = 2, exportSchema = false)
 public abstract class AppRoom extends RoomDatabase {
 
     private static AppRoom instance;
@@ -25,6 +25,7 @@ public abstract class AppRoom extends RoomDatabase {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     AppRoom.class,
                     "FlightDB") // database name
+                    .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()  // temporary for now
                     .build();
         }

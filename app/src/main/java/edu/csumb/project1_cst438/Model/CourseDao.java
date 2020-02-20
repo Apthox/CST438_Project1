@@ -11,17 +11,17 @@ import java.util.List;
 @Dao
 public interface CourseDao {
     @Insert
-    void insert(Course...courses);
+    void insert(Course... courses);
     @Update
-    void update(Course...courses);
+    void update(Course... courses);
     @Delete
-    void delete(Course...courses);
+    void delete(Course... courses);
 
-    @Query("SELECT * FROM " + AppDatabase.COURSE_TABLE)
+    @Query("SELECT * FROM " + AppRoom.COURSE_TABLE)
     List<Course>getAllCourses();
-    @Query("SELECT * FROM " + AppDatabase.COURSE_TABLE + " WHERE mCourseID = :courseId")
+    @Query("SELECT * FROM " + AppRoom.COURSE_TABLE + " WHERE mCourseID = :courseId")
     Course getCourseByID(int courseId);
-    @Query("SELECT * FROM " + AppDatabase.COURSE_TABLE + " WHERE mCourseTitle = :courseTitle")
+    @Query("SELECT * FROM " + AppRoom.COURSE_TABLE + " WHERE mCourseTitle = :courseTitle")
     Course getCourseByTitle(String courseTitle);
 
 
