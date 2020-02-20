@@ -52,7 +52,7 @@ public class ACT_Initial_Course_Display extends AppCompatActivity implements MyA
          */
         ArrayList<String> useData = new ArrayList<>();
 
-        for (Course course:mCourseList) {
+        for (Course course : mCourseList) {
             //useData.add("CourseTitle: "+course.getCourseTitle());
             useData.add("ID#:" +course.getCourseID());
         }
