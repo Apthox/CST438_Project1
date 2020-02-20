@@ -44,7 +44,7 @@ public class ACT_Initial_Course_Display extends AppCompatActivity implements MyA
         mDisplay = findViewById(R.id.course_display);
         layoutManager = new LinearLayoutManager(this);
         //mDisplay.setLayoutManager(layoutManager);
-        mCourseList = mCourseDao.getAllCourses();
+        mCourseList = mCourseDao.getCourses(MainActivity.uid);
 
         /**
          * here is where we would pull any data from the database

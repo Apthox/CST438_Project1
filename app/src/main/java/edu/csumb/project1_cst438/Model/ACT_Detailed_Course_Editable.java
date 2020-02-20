@@ -40,7 +40,7 @@ public class ACT_Detailed_Course_Editable extends AppCompatActivity {
         if (bundle!=null){
             selectedCourse = bundle.getInt("selectedCourse");
             Course temp = mCourseDao.getCourseByID(selectedCourse);
-        mDisplay.setText(temp.toString());
+            mDisplay.setText(temp.toString());
         }
 
     }
@@ -68,7 +68,7 @@ public class ACT_Detailed_Course_Editable extends AppCompatActivity {
         //send id in bundle
 
         Intent intent = new Intent(this,ACT_Edit_Course.class);
-        intent.putExtra("refID",selectedCourse);
+        intent.putExtra("refID", selectedCourse);
         startActivity(intent);
 
 

@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     MainActivity.signedIn = true;
                     MainActivity.username = user.getUsername();
+                    MainActivity.uid = user.uid;
 
                     // TODO: Place intent here for course display page
                     Intent intent = new Intent(instance, ACT_Initial_Course_Display.class);
