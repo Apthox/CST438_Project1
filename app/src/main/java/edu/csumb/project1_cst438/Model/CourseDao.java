@@ -19,6 +19,10 @@ public interface CourseDao {
 
     @Query("SELECT * FROM " + AppRoom.COURSE_TABLE)
     List<Course>getAllCourses();
+
+    @Query("SELECT * FROM " + AppRoom.COURSE_TABLE + " WHERE UserID == :userID")
+    List<Course>getCourses(int userID);
+
     @Query("SELECT * FROM " + AppRoom.COURSE_TABLE + " WHERE mCourseID = :courseId")
     Course getCourseByID(int courseId);
     @Query("SELECT * FROM " + AppRoom.COURSE_TABLE + " WHERE mCourseTitle = :courseTitle")
