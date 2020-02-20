@@ -30,7 +30,6 @@ public class ACT_Add_Category extends AppCompatActivity {
 
         mCategoryName = findViewById(R.id.category_name);
         mCategoryPercentage = findViewById(R.id.category_percentage);
-        mID = findViewById(R.id.categoryID);
         mAdd = findViewById(R.id.button2);
         mDone = findViewById(R.id.button_submit);
         taken=false;
