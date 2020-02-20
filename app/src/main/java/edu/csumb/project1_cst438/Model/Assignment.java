@@ -8,8 +8,6 @@
 
 package edu.csumb.project1_cst438.Model;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -19,8 +17,6 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import edu.csumb.project1_cst438.Model.AppDatabase;
 
 @Entity(tableName = "Assignment_Table")
 public class Assignment implements Serializable {
@@ -62,6 +58,7 @@ public class Assignment implements Serializable {
         this.dueTime = dueTime;
         this.description = description;
         this.possibleScore = possibleScore;
+        this.scoreEarned = -1;
     }
 
     // Constructor for assignment using strings for dateAssigned and dueDateAndTime
@@ -73,6 +70,7 @@ public class Assignment implements Serializable {
         this.dueTime = convertStringTimeToLong(dueTime); // could be null due to parsing
         this.description = description;
         this.possibleScore = possibleScore;
+        this.scoreEarned = -1;
     }
 
     // getter and setter for title --------------------------------------

@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -16,6 +17,12 @@ public interface AssignmentDao {
     @Delete
     void delete(Assignment assignment);
 
-    @Query("SELECT * FROM " + AppDatabase.ASSIGNMENTS_TABLE + " WHERE courseId = :course")
+    @Update
+    void update(Assignment... assignment);
+
+    @Query("SELECT * FROM " + AppRoom.ASSIGNMENTS_TABLE + " WHERE courseId = :course")
     List<Assignment> getAssignmentsInCourse(int course);
+
+    @Query("SELECT * FROM " + AppRoom.ASSIGNMENTS_TABLE + " WHERE assignmentId = :aId")
+    Assignment getAssignmentFromId(int aId);
 }

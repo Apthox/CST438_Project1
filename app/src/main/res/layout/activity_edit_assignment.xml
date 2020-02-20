@@ -5,8 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateAssignmentActivity">
-
+    tools:context=".EditAssignmentActivity">
 
     <TextView
         android:id="@+id/title_tv"
@@ -126,12 +125,12 @@
         app:layout_constraintTop_toBottomOf="@+id/description_et" />
 
     <Button
-        android:id="@+id/add_assignment_btn"
+        android:id="@+id/update_assignment_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
         android:layout_marginRight="48dp"
-        android:text="@string/add_assignment"
+        android:text="@string/update_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/possible_score_et"
@@ -144,8 +143,8 @@
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:text="@string/cancel_btn"
-        app:layout_constraintBottom_toBottomOf="@+id/add_assignment_btn"
-        app:layout_constraintEnd_toStartOf="@+id/add_assignment_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/update_assignment_btn"
+        app:layout_constraintEnd_toStartOf="@+id/update_assignment_btn"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 

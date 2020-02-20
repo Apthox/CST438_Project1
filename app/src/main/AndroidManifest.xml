@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MultiAssignmentDisplay"></activity>
+        <activity android:name=".EditAssignmentActivity"></activity>
+        <activity android:name=".MultiAssignmentDisplay" />
         <activity android:name=".DisplayAssignmentInfo" />
         <activity android:name=".CreateAssignmentActivity" />
         <activity android:name=".MainActivity">

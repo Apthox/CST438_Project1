@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="temporal_text"
+        android:text="@string/item_place_holder_text_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <!-- Other things may go here in the future -->

@@ -7,7 +7,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -21,9 +20,9 @@ import edu.csumb.project1_cst438.Model.AppRoom;
 import edu.csumb.project1_cst438.Model.Assignment;
 import edu.csumb.project1_cst438.Model.AssignmentDao;
 
-public class CreateAssignmentActivity extends AppCompatActivity {
+public class EditAssignmentActivity extends AppCompatActivity {
 
-    private static final String TAG = "CreateAssignmentAct";
+    private static final String TAG = "EditAssignmentAct";
 
     EditText mTitle;
     EditText mDateAssigned;
@@ -32,16 +31,17 @@ public class CreateAssignmentActivity extends AppCompatActivity {
     EditText mDescription;
     EditText mPossibleScore;
 
-    Button mAddAssignment;
+    Button mUpdateAssignmentBtn;
     Button mCancelAssignmentCreation;
 
     AssignmentDao mAssignmentDao;
+    Assignment mCurrentAssignment;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_assignment);
+        setContentView(R.layout.activity_edit_assignment);
 
         mTitle = (EditText) findViewById(R.id.title_et);
         mDateAssigned = (EditText) findViewById(R.id.date_assigned_et);
@@ -56,13 +56,19 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         mDescription = (EditText) findViewById(R.id.description_et);
         mPossibleScore = (EditText) findViewById(R.id.possible_score_et);
 
-        mAddAssignment = findViewById(R.id.add_assignment_btn);
-        mCancelAssignmentCreation = findViewById(R.id.cancel_btn);
+        mUpdateAssignmentBtn = findViewById(R.id.update_assignment_btn);
+        mCancelAssignmentCreation = (Button) findViewById(R.id.cancel_btn);
 
         mAssignmentDao = Room.databaseBuilder(this, AppRoom.class, AppRoom.dbName)
                 .allowMainThreadQueries()
                 .build()
                 .assignmentDao();
+
+        // retrieve the assignment set from the previous activity
+        mCurrentAssignment = retrieveAssignment();
+
+        // populate the activity with the information from the assignment passed
+        populateActivity();
 
         // date picker for date assigned
         mDateAssigned.setOnClickListener(generateDateListener(mDateAssigned));
@@ -74,14 +80,14 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         mDueTime.setOnClickListener(generateTimeListener(mDueTime));
 
         // listener for button to grab info, make an object and send to db
-        mAddAssignment.setOnClickListener(new View.OnClickListener() {
+        mUpdateAssignmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Gather the information of the text fields
-                mAssignmentDao.insert(retrieveAssignmentWithData());
-                Log.i(TAG, "Assignment should have been added to the database at this point");
+                // Gather the information, update assignment locally and update the roomdb
+                updateAssignmentInformation();
+                mAssignmentDao.update(mCurrentAssignment);
                 // toast to inform user of the action
-                Toast.makeText(getApplicationContext(), "Assignment Added", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Assignment updated", Toast.LENGTH_LONG).show();
                 finish(); // return to the previous activity to continue working
             }
         });
@@ -105,7 +111,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 int year = cldr.get(Calendar.YEAR);
 
                 // date picker dialog
-                DatePickerDialog datePickerDialog = new DatePickerDialog(CreateAssignmentActivity.this,
+                DatePickerDialog datePickerDialog = new DatePickerDialog(EditAssignmentActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -128,7 +134,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 int mMinute = cldr.get(Calendar.MINUTE);
 
                 // time picker dialog
-                TimePickerDialog timePickerDialog = new TimePickerDialog(CreateAssignmentActivity.this,
+                TimePickerDialog timePickerDialog = new TimePickerDialog(EditAssignmentActivity.this,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -141,24 +147,27 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         return timeListener;
     }
 
-    // retrieves the information given by the user in the form of an object
-    private Assignment retrieveAssignmentWithData() {
-        String title = mTitle.getText().toString();
-        String description = mDescription.getText().toString();
-        String dateAssigned = mDateAssigned.getText().toString();
-        String dueDate = mDueDate.getText().toString();
-        String dueTime = mDueTime.getText().toString();
-
-        Float possibleScore = Float.parseFloat(mPossibleScore.getText().toString());
-
-        Assignment assignment = new Assignment(title, dateAssigned, dueDate, dueTime,
-                description, possibleScore);
-        assignment.setCourseId(getIncomingCourse());
-
-        return assignment;
+    // retrieves the information given by the user and updates the assignment passed to this activity
+    private void updateAssignmentInformation() {
+        mCurrentAssignment.setTitle(mTitle.getText().toString());
+        mCurrentAssignment.setDescription(mDescription.getText().toString());
+        mCurrentAssignment.setDateAssignedFromString(mDateAssigned.getText().toString());
+        mCurrentAssignment.setDueDateFromString(mDueDate.getText().toString());
+        mCurrentAssignment.setDueTimeFromString(mDueTime.getText().toString());
+        mCurrentAssignment.setPossibleScore(Float.parseFloat(mPossibleScore.getText().toString()));
     }
 
-    private int getIncomingCourse() { // this may end up being a different type later
-        return getIntent().getIntExtra("courseId", 0);
+    private void populateActivity() {
+        mTitle.setText(mCurrentAssignment.getTitle());
+        mDateAssigned.setText(mCurrentAssignment.getStringDateAssigned());
+        mDueDate.setText(mCurrentAssignment.getStringDueDate());
+        mDueTime.setText(mCurrentAssignment.getStringDueTime());
+        mDescription.setText(mCurrentAssignment.getDescription());
+        mPossibleScore.setText(String.valueOf(mCurrentAssignment.getPossibleScore()));
+    }
+
+    private Assignment retrieveAssignment () {
+        return (Assignment) getIntent().getSerializableExtra("Assignment");
+
     }
 }

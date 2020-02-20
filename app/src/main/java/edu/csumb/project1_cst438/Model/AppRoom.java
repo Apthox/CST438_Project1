@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 @Database(entities = {User.class, Assignment.class}, version = 1)
-public abstract class AppDatabase extends RoomDatabase {
+public abstract class AppRoom extends RoomDatabase {
     public static final String dbName = "db-studentGradeTracker";
     public static final String ASSIGNMENTS_TABLE = "Assignment_Table";
 
