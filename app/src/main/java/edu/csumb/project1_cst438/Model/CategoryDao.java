@@ -4,22 +4,25 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
 @Dao
 public interface CategoryDao {
 
-    @Query("SELECT * FROM category")
-    List<Category> getAllCategory();
-
-    @Query("SELECT * FROM category WHERE cid IN (:categoryIds)")
-    List<User> loadAllByIds(int[] categoryIds);
-
     @Insert
-    void insertAll(Category... categories);
-
+    void insert(Category...categories);
+    @Update
+    void update(Category...categories);
     @Delete
-    void delete(Category categories);
+    void delete(Category...categories);
+
+    @Query("SELECT * FROM " + AppDatabase.CATEGORY_TABLE)
+    List<Category>getAllCourses();
+    @Query("SELECT * FROM " + AppDatabase.CATEGORY_TABLE + " WHERE category_name = :categoryName")
+    Category getCategoryByName(String categoryName);
+    @Query("SELECT * FROM " + AppDatabase.CATEGORY_TABLE + " WHERE percentage = :categoryPercentage")
+    Category getCategoryPercentage(double categoryPercentage);
 
 }

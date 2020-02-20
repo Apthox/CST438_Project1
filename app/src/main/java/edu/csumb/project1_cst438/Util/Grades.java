@@ -47,5 +47,30 @@ public class Grades {
         return average;
     }
 
+    public void displayName(String categoryName){
+        System.out.print(categoryName);
+    }
+
+    public void displayGrades(double gradePoints){
+        if(gradePoints <= 100 && gradePoints > 89) {
+            System.out.print('A');
+        }
+        else if(gradePoints <= 89 && gradePoints > 79){
+            System.out.print('B');
+        }
+        else if(gradePoints <= 79 && gradePoints > 69){
+            System.out.print('C');
+        }
+        else if(gradePoints <= 69 && gradePoints > 59){
+            System.out.print('D');
+        }
+        else if (gradePoints < 59){
+            System.out.print('F');
+        }
+        else {
+            System.out.print("NULL");
+        }
+    }
+
 
 }
