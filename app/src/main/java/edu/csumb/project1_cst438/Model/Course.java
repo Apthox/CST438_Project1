@@ -9,7 +9,6 @@ import java.util.Date;
 public class Course {
     /**
      * fields:
-     * instructor,title,description,start date, end date, courseID
      *
      * constructor order, title,instructor,description,start date, end date,courseID
      *
@@ -20,11 +19,11 @@ public class Course {
     //@ColumnInfo
     private Integer mCourseID;
 
-    private String mInstructor,mCourseTitle,mCourseDescription;
+    private String mInstructor,mCourseTitle,mCourseDescription,mStartDate,mEndDate;
 
-    private Date mStartDate,mEndDate;
 
-    public Course(String mCourseTitle, String mInstructor, String mCourseDescription, Date mStartDate, Date mEndDate, Integer mCourseID) {
+
+    public Course(String mCourseTitle, String mInstructor, String mCourseDescription, String mStartDate, String mEndDate, Integer mCourseID) {
         this.mInstructor = mInstructor;
         this.mCourseTitle = mCourseTitle;
         this.mCourseDescription = mCourseDescription;
@@ -57,19 +56,19 @@ public class Course {
         this.mCourseDescription = mCourseDescription;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return mStartDate;
     }
 
-    public void setCourseStartDate(Date mStartDate) {
+    public void setCourseStartDate(String mStartDate) {
         this.mStartDate = mStartDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return mEndDate;
     }
 
-    public void setCourseEndDate(Date mEndDate) {
+    public void setCourseEndDate(String mEndDate) {
         this.mEndDate = mEndDate;
     }
 

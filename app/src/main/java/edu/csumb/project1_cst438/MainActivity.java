@@ -16,25 +16,16 @@ import edu.csumb.project1_cst438.Model.Course;
 import edu.csumb.project1_cst438.Model.CourseDao;
 
 public class MainActivity extends AppCompatActivity {
-    CourseDao mCourseDao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Log.d("here", "onCreate: hello");
-        Intent intent = new Intent(this, ACT_Initial_Course_Display.class);
-        startActivity(intent);
 
-        mCourseDao = Room.databaseBuilder(this, AppDatabase.class,AppDatabase.COURSE_TABLE)
-                .allowMainThreadQueries()
-                .build()
-                .getCourseDao();
-        Course testA = new Course("Math","A","A",new Date(2020/2/11),new Date(2020/2/11),798);
-        Course testB = new Course("English","A","A",new Date(2020/2/11),new Date(2020/2/11),998);
-        Course testC = new Course("Science","A","A",new Date(2020/2/11),new Date(2020/2/11),456);
-        mCourseDao.insert(testA);
-        mCourseDao.insert(testB);
-        mCourseDao.insert(testC);
+//        Intent intent = new Intent(this, ACT_Initial_Course_Display.class);
+//        startActivity(intent);
+
+
     }
 }

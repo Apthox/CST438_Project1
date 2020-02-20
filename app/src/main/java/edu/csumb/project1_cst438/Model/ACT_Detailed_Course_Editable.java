@@ -20,7 +20,7 @@ public class ACT_Detailed_Course_Editable extends AppCompatActivity {
     TextView mDisplay;
     CourseDao mCourseDao;
     Button mEditButton,mDeleteButton;
-    private String selectedCourse;
+    private Integer selectedCourse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,8 @@ public class ACT_Detailed_Course_Editable extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-
+        mDeleteButton = findViewById(R.id.button_delete_course);
+        mEditButton = findViewById(R.id.button_edit_course);
         mDisplay = findViewById(R.id.selectedDisplay);
         mCourseDao = Room.databaseBuilder(this,AppDatabase.class,AppDatabase.COURSE_TABLE)
                 .allowMainThreadQueries()
@@ -37,9 +38,8 @@ public class ACT_Detailed_Course_Editable extends AppCompatActivity {
                 .getCourseDao();
         //find the course in db
         if (bundle!=null){
-            selectedCourse = bundle.getString("selectedCourse");
-            Course temp = mCourseDao.getCourseByTitle(selectedCourse);
-
+            selectedCourse = bundle.getInt("selectedCourse");
+            Course temp = mCourseDao.getCourseByID(selectedCourse);
         mDisplay.setText(temp.toString());
         }
 
@@ -54,8 +54,7 @@ public class ACT_Detailed_Course_Editable extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //where to do when deletion occurs
-                        //Toast.makeText(ACT_Detailed_Course_Editable.this, "yay", Toast.LENGTH_SHORT).show();
-                        mCourseDao.delete(mCourseDao.getCourseByTitle(selectedCourse));
+                        mCourseDao.delete(mCourseDao.getCourseByID(selectedCourse));
                         Intent intent = new Intent(ACT_Detailed_Course_Editable.this,ACT_Initial_Course_Display.class);
                         startActivity(intent);
                     }
@@ -66,6 +65,12 @@ public class ACT_Detailed_Course_Editable extends AppCompatActivity {
 
     }
     public void onEdit(View view){
+        //send id in bundle
+
+        Intent intent = new Intent(this,ACT_Edit_Course.class);
+        intent.putExtra("refID",selectedCourse);
+        startActivity(intent);
+
 
     }
 }

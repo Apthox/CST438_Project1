@@ -43,24 +43,16 @@ public class ACT_Initial_Course_Display extends AppCompatActivity implements MyA
         layoutManager = new LinearLayoutManager(this);
         //mDisplay.setLayoutManager(layoutManager);
         mCourseList = mCourseDao.getAllCourses();
-        //ArrayList help = new ArrayList();
-        //int i = 0;
-//        for (Course course:mCourseList) {
-//            mDataset[i]=course.getCourseTitle();
-//        }
 
-
-        //mAdapter = new RecyclerView.Adapter(mCourseList);
-        //mDisplay.setAdapter(mAdapter);
         /**
          * here is where we would pull any data from the database
          *
          */
         ArrayList<String> useData = new ArrayList<>();
 
-        //useData.add("haha");
         for (Course course:mCourseList) {
-            useData.add(course.getCourseTitle());
+            //useData.add("CourseTitle: "+course.getCourseTitle());
+            useData.add("ID#:" +course.getCourseID());
         }
         mDisplay.setLayoutManager(new LinearLayoutManager(this));
 
@@ -74,12 +66,11 @@ public class ACT_Initial_Course_Display extends AppCompatActivity implements MyA
         /**
          * here is what will happen to any given value clicked
          */
-        Toast.makeText(this,adapter.getItem(position),Toast.LENGTH_SHORT).show();
-        String clickedID = adapter.getItem(position);
+        String clickedIDFull = adapter.getItem(position);
+        String clickedIDSub = clickedIDFull.substring(4,7);
+        Integer clickedID = Integer.parseInt(clickedIDSub);
         String selectedCourse = "selectedCourse";
-        //Course cBundle = mCourseDao.getCourseByTitle(clickedID);
         Intent detail = new Intent(this,ACT_Detailed_Course_Editable.class);
-        //detail.putExtra("selectedCourse", (Parcelable) cBundle);
         detail.putExtra("selectedCourse",clickedID);
         startActivity(detail);
 

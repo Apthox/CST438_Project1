@@ -7,6 +7,7 @@
     <string name="course_start_date_entry">Enter_Start_Date</string>
     <string name="course_title_entry">Enter_Title</string>
     <string name="button_add_course">Add Course</string>
+    <string name="button_done">Done</string>
     <string name="button_edit_course">Edit</string>
     <string name="button_delete_course">Delete</string>
     <string-array name="spin_year">
