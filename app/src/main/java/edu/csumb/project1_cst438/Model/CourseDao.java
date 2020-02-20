@@ -12,8 +12,7 @@ import java.util.List;
 public interface CourseDao {
     @Insert
     void insert(Course... courses);
-    @Update
-    void update(Course... courses);
+
     @Delete
     void delete(Course... courses);
 
