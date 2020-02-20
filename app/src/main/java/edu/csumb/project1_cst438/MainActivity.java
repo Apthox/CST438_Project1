@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import edu.csumb.project1_cst438.Model.ACT_Initial_Course_Display;
-import edu.csumb.project1_cst438.Model.AppDatabase;
 import edu.csumb.project1_cst438.Model.Course;
 import edu.csumb.project1_cst438.Model.CourseDao;
 
