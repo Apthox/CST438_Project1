@@ -27,7 +27,7 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
     RecyclerView.LayoutManager layoutManager;
     CategoryDao mCategoryDao;
     List<Category> mCategoryList;
-    private String[] mDataset;
+
     MyAdapter adapter;
 
 
@@ -46,19 +46,17 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
         //mDisplay.setLayoutManager(layoutManager);
         mCategoryList = mCategoryDao.getAllCategorys();
 
-        /**
-         * here is where we would pull any data from the database
-         *
-         */
-        ArrayList<String> useData = new ArrayList<>();
+        ArrayList<String> titles = new ArrayList<>();
+        ArrayList<Integer> IDs = new ArrayList<>();
 
-        for (Category Category:mCategoryList) {
-            //useData.add("CategoryTitle: "+Category.getCategoryTitle());
-            useData.add("ID#:" +Category.getCid());
+        for (Category category : mCategoryList) {
+            titles.add(category.getCategoryName());
+            IDs.add(category.getCid());
         }
+
         mDisplay.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new MyAdapter(this,useData);
+        adapter = new MyAdapter(this, IDs, titles);
         adapter.setClickListener(this);
         mDisplay.setAdapter(adapter);
 
