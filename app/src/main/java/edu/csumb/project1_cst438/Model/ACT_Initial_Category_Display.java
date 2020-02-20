@@ -34,9 +34,9 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act__initial__Category__display);
+        setContentView(R.layout.activity_act__initial__category__display);
 
-        mCategoryDao = Room.databaseBuilder(this,AppRoom.class,AppRoom.Category_TABLE)
+        mCategoryDao = Room.databaseBuilder(this,AppRoom.class,AppRoom.CATEGORY_TABLE)
                 .allowMainThreadQueries()
                 .build()
                 .getCategoryDao();
@@ -54,7 +54,7 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
 
         for (Category Category:mCategoryList) {
             //useData.add("CategoryTitle: "+Category.getCategoryTitle());
-            useData.add("ID#:" +Category.getCategoryID());
+            useData.add("ID#:" +Category.getCid());
         }
         mDisplay.setLayoutManager(new LinearLayoutManager(this));
 
@@ -84,9 +84,9 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
         String clickedIDSub = clickedIDFull.substring(4,7);
         Integer clickedID = Integer.parseInt(clickedIDSub);
         String selectedCategory = "selectedCategory";
-        Intent detail = new Intent(this,ACT_Detailed_Category_Editable.class);
-        detail.putExtra("selectedCategory",clickedID);
-        startActivity(detail);
+        //Intent detail = new Intent(this,ACT_Detailed_Category_Editable.class);
+        //detail.putExtra("selectedCategory",clickedID);
+        //startActivity(detail);
 
     }
     public void add(View view){

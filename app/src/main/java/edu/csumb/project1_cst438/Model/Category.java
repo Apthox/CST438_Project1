@@ -6,7 +6,7 @@ import androidx.room.ColumnInfo;
 @Entity (tableName = "category")
 public class Category {
     @PrimaryKey(autoGenerate = true)
-    private int uCID; //category ID
+    private int cid; //category ID
 
     @ColumnInfo(name = "category_name")
     public String category_name;
@@ -14,10 +14,18 @@ public class Category {
     @ColumnInfo(name = "category_percentage")
     public double category_percentage;
 
-    private int cid;
     private String categoryName;
     private double categoryPercentage;
     private int userID;
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
+    }
+
     private int courseID;
 
     public Category(int cid, String categoryName, double categoryPercentage) {
@@ -26,11 +34,11 @@ public class Category {
         this.categoryPercentage = categoryPercentage;
     }
 
-    public int getuserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public int getcourseID() {
+    public int getCourseID() {
         return courseID;
     }
 

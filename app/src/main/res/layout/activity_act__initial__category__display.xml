@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="add"
-                android:text="@string/button_add_Category" />
+                android:text="Add Category" />
         </LinearLayout>
 
     </LinearLayout>

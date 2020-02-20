@@ -14,7 +14,6 @@
         <activity android:name=".tests" />
         <activity android:name=".Model.ACT_Initial_Course_Display" />
         <activity android:name=".Model.ACT_Add_Course" />
-        tools:replace="android:appComponentFactory"
         <activity android:name=".CategoryActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
