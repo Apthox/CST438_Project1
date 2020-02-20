@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.csumb.project1_cst438.Model.AppRoom;
+import edu.csumb.project1_cst438.Model.User;
 import edu.csumb.project1_cst438.Model.UserDao;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -43,6 +44,30 @@ public class SignUpActivity extends AppCompatActivity {
                     alert.show();
                     return;
                 }
+
+                UserDao dao = AppRoom.getAppRoom(instance).userDao();
+                User user = dao.getUser(username.getText().toString());
+
+                if (user != null) {
+                    AlertDialog alert = MainActivity.createAlertDialog(instance, "Alert", "Username Taken!");
+                    alert.show();
+                    return;
+                }
+
+                User new_user = new User(username.getText().toString(), password.getText().toString(),
+                        first.getText().toString(), last.getText().toString());
+
+                dao.insert(new_user);
+
+                MainActivity.username = new_user.getUsername();
+                MainActivity.signedIn = true;
+
+                // TODO: switch to courses intent
+
+
+                setResult(-1, null);
+                finish();
+
             }
         });
 

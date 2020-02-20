@@ -74,8 +74,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-                startActivity(intent);
+                instance.startActivityForResult(intent, -1);
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("Login Activity", "Checking Activity Result");
+
+        if (requestCode == -1) {
+            if (resultCode == RESULT_OK) {
+                this.finish();
+                Log.d("Login Activity", "Exiting!");
+            }
+        }
+    }
+
 }
