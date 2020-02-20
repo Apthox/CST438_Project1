@@ -28,7 +28,7 @@ public interface CategoryDao {
     @Query("SELECT * FROM " + AppRoom.CATEGORY_TABLE + " WHERE category_percentage = :categoryPercentage")
     Category getCategoryPercentage(double categoryPercentage);
 
-    @Query("SELECT * FROM " + AppRoom.CATEGORY_TABLE + " WHERE cid = :cid")
+    @Query("SELECT * FROM " + AppRoom.CATEGORY_TABLE + " WHERE cid = :cid ")
     Category getCategoryByID(int cid);
 
 

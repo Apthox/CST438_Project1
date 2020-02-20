@@ -62,7 +62,7 @@ public class Category {
         return categoryPercentage;
     }
 
-    public void setCategoryPerecentage(double categoryPercentage) {
+    public void setCategoryPercentage(double categoryPercentage) {
         this.categoryPercentage = categoryPercentage;
     }
 
@@ -72,5 +72,6 @@ public class Category {
                 "categoryName='" + categoryName + '\'' +
                 '}';
     }
+
 }
 
