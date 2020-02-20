@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 
 import java.util.List;
 
-@Database(entities = {User.class, Assignment.class}, version = 1)
+@Database(entities = {User.class,  Assignment.class, Course.class}, version = 4, exportSchema = false)
 public abstract class AppRoom extends RoomDatabase {
     private static AppRoom instance;
 
@@ -27,9 +27,10 @@ public abstract class AppRoom extends RoomDatabase {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     AppRoom.class,
-                    "FlightDB") // database name
-                    .fallbackToDestructiveMigration()
+                    "GradingDB") // database name
                     .allowMainThreadQueries()  // temporary for now
+                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigrationOnDowngrade()
                     .build();
         }
         return instance;
@@ -60,6 +61,4 @@ public abstract class AppRoom extends RoomDatabase {
         dao.insert(kevin);
         Log.d("FlightRoom", "4 users added to database");
     }
-
-
 }
