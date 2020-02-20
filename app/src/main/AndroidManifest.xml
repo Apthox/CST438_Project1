@@ -17,6 +17,10 @@
         <activity android:name=".tests" />
         <activity android:name=".Model.ACT_Initial_Course_Display" />
         <activity android:name=".Model.ACT_Add_Course" />
+        <activity android:name=".EditAssignmentActivity"></activity>
+        <activity android:name=".MultiAssignmentDisplay" />
+        <activity android:name=".DisplayAssignmentInfo" />
+        <activity android:name=".CreateAssignmentActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

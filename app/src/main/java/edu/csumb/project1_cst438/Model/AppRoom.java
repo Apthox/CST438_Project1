@@ -9,15 +9,18 @@ import androidx.room.RoomDatabase;
 
 import java.util.List;
 
-@Database(entities = {User.class, Course.class}, version = 4, exportSchema = false)
+@Database(entities = {User.class,  Assignment.class, Course.class}, version = 4, exportSchema = false)
 public abstract class AppRoom extends RoomDatabase {
-
     private static AppRoom instance;
 
-    public abstract UserDao userDao();
+    public static final String dbName = "db-studentGradeTracker";
 
-    public static final String COURSE_TABLE="course";
+    public abstract UserDao userDao();
+    public abstract AssignmentDao assignmentDao();
     public abstract CourseDao getCourseDao();
+
+    public static final String ASSIGNMENTS_TABLE = "Assignment_Table";
+    public static final String COURSE_TABLE="course";
 
     public static AppRoom getAppRoom(final Context context){
 
@@ -58,6 +61,4 @@ public abstract class AppRoom extends RoomDatabase {
         dao.insert(kevin);
         Log.d("FlightRoom", "4 users added to database");
     }
-
-
 }
