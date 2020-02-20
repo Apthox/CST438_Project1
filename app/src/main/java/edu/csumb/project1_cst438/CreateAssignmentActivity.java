@@ -37,11 +37,14 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 
     AssignmentDao mAssignmentDao;
 
+    private int cat_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_assignment);
+
+        cat_id = getIntent().getIntExtra("category_id", 0);
 
         mTitle = (EditText) findViewById(R.id.title_et);
         mDateAssigned = (EditText) findViewById(R.id.date_assigned_et);
@@ -153,7 +156,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 
         Assignment assignment = new Assignment(title, dateAssigned, dueDate, dueTime,
                 description, possibleScore);
-        assignment.setCourseId(getIncomingCourse());
+        assignment.setCategoryId(cat_id);
 
         return assignment;
     }

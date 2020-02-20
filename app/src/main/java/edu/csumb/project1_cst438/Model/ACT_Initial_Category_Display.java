@@ -19,6 +19,7 @@ import java.util.List;
 
 import edu.csumb.project1_cst438.LoginActivity;
 import edu.csumb.project1_cst438.MainActivity;
+import edu.csumb.project1_cst438.MultiAssignmentDisplay;
 import edu.csumb.project1_cst438.R;
 
 public class ACT_Initial_Category_Display extends AppCompatActivity implements MyAdapter.ItemClickListener {
@@ -109,11 +110,17 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
     }
     @Override
     public void onItemClick(View view, int position){
-        /**
-         * here is what will happen to any given value clicked
-         */
+
+        Log.d("Category Activity", "Item clicked!");
 
         int cat_id = adapter.getID(position);
+
+        Intent intent = new Intent(this, MultiAssignmentDisplay.class);
+
+        intent.putExtra("course_id", selectedCourse);
+        intent.putExtra("cat_id", cat_id);
+
+        startActivity(intent);
 
         //Intent detail = new Intent(this,ACT_Detailed_Category_Editable.class);
         //detail.putExtra("selectedCategory",clickedID);
