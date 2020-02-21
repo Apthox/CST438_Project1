@@ -23,6 +23,9 @@ public interface AssignmentDao {
     @Query("SELECT * FROM " + AppRoom.ASSIGNMENTS_TABLE + " WHERE courseId = :course")
     List<Assignment> getAssignmentsInCourse(int course);
 
+    @Query("SELECT * FROM " + AppRoom.ASSIGNMENTS_TABLE + " WHERE categoryId = :category")
+    List<Assignment> getAssignments(int category);
+
     @Query("SELECT * FROM " + AppRoom.ASSIGNMENTS_TABLE + " WHERE assignmentId = :aId")
     Assignment getAssignmentFromId(int aId);
 }

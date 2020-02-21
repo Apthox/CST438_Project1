@@ -9,18 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.login.LoginActivity2"
-            android:label="@string/title_activity_login2"></activity>
         <activity android:name=".Model.ACT_Edit_Course"></activity>
         <activity android:name=".Model.ACT_Detailed_Course_Editable" />
         <activity android:name=".tests" />
         <activity android:name=".Model.ACT_Initial_Course_Display" />
+        <activity android:name=".Model.ACT_Initial_Category_Display" />
         <activity android:name=".Model.ACT_Add_Course" />
+        <activity android:name=".Model.ACT_Add_Category" />
+        <activity android:name=".Model.ACT_Detailed_Category_Editable" />
+        <activity android:name=".Model.ACT_Edit_Category"></activity>
         <activity android:name=".EditAssignmentActivity"></activity>
         <activity android:name=".MultiAssignmentDisplay" />
         <activity android:name=".DisplayAssignmentInfo" />
         <activity android:name=".CreateAssignmentActivity" />
+        <activity android:name=".CategoryActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

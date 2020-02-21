@@ -20,7 +20,7 @@ import edu.csumb.project1_cst438.Model.AssignmentDao;
 public class MultiAssignmentDisplay extends AppCompatActivity {
 
     private List<Assignment> assignments;
-    private int courseId;
+    private int categoryID;
     private AssignmentDao mAssignmentDao;
     private RecyclerView rvAssignments;
     private DividerItemDecoration itemDecor;
@@ -34,7 +34,9 @@ public class MultiAssignmentDisplay extends AppCompatActivity {
         goToCreateAssigBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MultiAssignmentDisplay.this, CreateAssignmentActivity.class));
+                Intent intent = new Intent(MultiAssignmentDisplay.this, CreateAssignmentActivity.class);
+                intent.putExtra("category_id", categoryID);
+                startActivity(intent);
             }
         });
 
@@ -51,7 +53,7 @@ public class MultiAssignmentDisplay extends AppCompatActivity {
         itemDecor = new DividerItemDecoration(rvAssignments.getContext(), DividerItemDecoration.VERTICAL);
         rvAssignments.addItemDecoration(itemDecor);
 
-        int courseId = getIncomingCourse();
+        getIncomingCourse();
 
         populateRecyclerView();
     }
@@ -63,19 +65,19 @@ public class MultiAssignmentDisplay extends AppCompatActivity {
         populateRecyclerView();
     }
 
-    public List<Assignment> populateAssignmentHolder(int course) {
+    public List<Assignment> populateAssignmentHolder() {
         List<Assignment> results;
-        results = mAssignmentDao.getAssignmentsInCourse(course);
+        results = mAssignmentDao.getAssignments(categoryID);
 
         return results;
     }
 
-    private int getIncomingCourse() { // this may end up being a different type later
-        return getIntent().getIntExtra("courseId", 0);
+    private void getIncomingCourse() { // this may end up being a different type later
+        categoryID = getIntent().getIntExtra("cat_id", 0);
     }
 
     private void populateRecyclerView() {
-        assignments = populateAssignmentHolder(courseId);
+        assignments = populateAssignmentHolder();
 
         AssignmentsAdapter adapter = new AssignmentsAdapter(this, assignments);
         rvAssignments.setAdapter(adapter);

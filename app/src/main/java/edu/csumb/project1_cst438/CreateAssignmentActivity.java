@@ -1,10 +1,12 @@
 package edu.csumb.project1_cst438;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -37,11 +39,14 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 
     AssignmentDao mAssignmentDao;
 
+    private int cat_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_assignment);
+
+        cat_id = getIntent().getIntExtra("category_id", 0);
 
         mTitle = (EditText) findViewById(R.id.title_et);
         mDateAssigned = (EditText) findViewById(R.id.date_assigned_et);
@@ -153,10 +158,12 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 
         Assignment assignment = new Assignment(title, dateAssigned, dueDate, dueTime,
                 description, possibleScore);
-        assignment.setCourseId(getIncomingCourse());
+        assignment.setCategoryId(cat_id);
 
         return assignment;
     }
+
+
 
     private int getIncomingCourse() { // this may end up being a different type later
         return getIntent().getIntExtra("courseId", 0);

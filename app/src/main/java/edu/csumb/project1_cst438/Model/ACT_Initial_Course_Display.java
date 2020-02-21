@@ -77,6 +77,28 @@ public class ACT_Initial_Course_Display extends AppCompatActivity implements MyA
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mCourseList = mCourseDao.getCourses(MainActivity.uid);
+
+        ArrayList<String> titles = new ArrayList<>();
+        ArrayList<Integer> IDs = new ArrayList<>();
+
+        for (Course course : mCourseList) {
+            //useData.add("CourseTitle: "+course.getCourseTitle());
+            titles.add(course.getCourseTitle());
+            IDs.add(course.getCourseID());
+        }
+        mDisplay.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new MyAdapter(this, IDs, titles);
+        adapter.setClickListener(this);
+        mDisplay.setAdapter(adapter);
+    }
+
     @Override
     public void onItemClick(View view, int position){
         /**
