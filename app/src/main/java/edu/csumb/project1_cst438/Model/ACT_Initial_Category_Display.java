@@ -12,6 +12,7 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,8 +30,10 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager layoutManager;
     CategoryDao mCategoryDao;
+    AssignmentDao mAssignmentDao;
     List<Category> mCategoryList;
     int selectedCourse = -1;
+    Assignment mCurrentAssignment;
 
     MyAdapter adapter;
 
@@ -55,19 +58,7 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
             selectedCourse = bundle.getInt("course_id");
         }
 
-//        Log.d("Category Activity", "Course ID > " + selectedCourse);
-//
-//        Category cat = new Category("Podcast Homeworks", 20, MainActivity.uid, selectedCourse);
-//        mCategoryDao.insert(cat);
-//        Log.d("Category Activity", "Created new category 1> " + cat.getCid());
-//
-//        Category cat2 = new Category("Podcast Exams", 50, MainActivity.uid, selectedCourse);
-//        mCategoryDao.insert(cat2);
-//        Log.d("Category Activity", "Created new category 2> " + cat2.getCid());
-
         mCategoryList = mCategoryDao.getCategories(MainActivity.uid, selectedCourse);
-
-        Log.d("Category Display", "Results > " + mCategoryList.size());
 
         ArrayList<String> titles = new ArrayList<>();
         ArrayList<Integer> IDs = new ArrayList<>();
@@ -108,7 +99,43 @@ public class ACT_Initial_Category_Display extends AppCompatActivity implements M
                 startActivity(intent);
             }
         });
+
+        //Assginment Calculation
+//        mCurrentAssignment = getIncomingAssignment();
+//        TextView avg_grade = findViewById(R.id.grades_display);
+//        String update = getString();
+//        avg_grade.setText(update);
+
     }
+
+    private Assignment getIncomingAssignment() {
+        Assignment assignmentFound = null;
+        if(getIntent().hasExtra("Assignment")) {
+            Assignment assignment = (Assignment) getIntent().getSerializableExtra("Assignment");
+            assignmentFound = assignment;
+        }
+        // here a null may be returned
+        // this will be addressed by removing the item from multiAssignmentDisplay
+        // therefore returning null should never happen
+        return assignmentFound;
+    }
+
+//    @Override
+//    public String getString() {
+//        super.onResume();
+//        String data = "";
+//        int count = 0;
+//        float average_grade = 0;
+//        int currentAssignmentId = mCurrentAssignment.getAssignmentId();
+//        mCurrentAssignment= mAssignmentDao.getAssignmentFromId(currentAssignmentId);
+//        for (Assignment: mCurrentAssignment){
+//            average_grade += (mCurrentAssignment.getPossibleScore()/mCurrentAssignment.getPossibleScore() * 100);
+//            count += 1;
+//        }
+//        average_grade = average_grade/count;
+//
+//        return data;
+//    }
 
     @Override
     protected void onResume() {
